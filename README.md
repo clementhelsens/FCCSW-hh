@@ -27,6 +27,7 @@ Export install directory
     export MYINSTALLDIR=../install
 
 Compile and install
+
     cmake -DCMAKE_INSTALL_PREFIX=${MYINSTALLDIR}  -DDD4HEP_USE_BOOST=ON -DDD4HEP_USE_XERCESC=ON -DXERCESC_ROOT_DIR=${location}/XercesC/3.1.1p1/x86_64-slc6-gcc48-opt -DROOTSYS=${location}/ROOT/v5-34-00-patches/x86_64-slc6-gcc48-opt -DDD4HEP_WITH_GEANT4=ON -DCMAKE_PREFIX_PATH=${location}/Geant4/9.6.p03/x86_64-slc6-gcc48-opt -DCMAKE_MODULE_PATH=${location}/DD4hep/v00-06/x86_64-slc6-gcc48-opt ..
     make -j 12
     make install

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lccdd xmlns:compact="http://www.lcsim.org/schemas/compact/1.0" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xs:noNamespaceSchemaLocation="http://www.lcsim.org/schemas/compact/1.0/compact.xsd">
+
+  <info name="FCC"
+        title="FCC containment shell"
+        author="Carlos"
+        url="no"
+        status="development"
+        version="$Id:??$">
+    <comment>An extra detector to measure particle escaping the detector description</comment>
+  </info>
+
+  <display>
+    <vis name="VisibleRed"  r="1.0" g="0.0" b="0.0" showDaughters="true" visible="true"/>
+  </display>
+  
+  <detectors> 
+    <detector id="100" name="HcalBarrelShell" type="ZylinderShell" vis="VisibleRed" readout="ContainmentHits" >
+    <comment>Containment shell to measure particles escaping the detector</comment>
+    <material name="Air"/>
+    <module name="Barrel" id="0" vis="VisibleRed">
+      <zplane rmin="HcalBarrel_rmax+20*cm" rmax="HcalBarrel_rmax+22*cm" z="-2*HcalBarrel_zmax"/>
+      <zplane rmin="HcalBarrel_rmax+20*cm" rmax="HcalBarrel_rmax+22*cm" z="2*HcalBarrel_zmax"/>
+    </module>
+    <module name="SideA" id="1" vis="VisibleRed">
+      <zplane rmin="0" rmax="HcalBarrel_rmax+22*cm" z="2*HcalBarrel_zmax+10*cm"/>
+      <zplane rmin="0" rmax="HcalBarrel_rmax+22*cm" z="2*HcalBarrel_zmax+20*cm"/>
+    </module>
+    <module name="SideB" id="2" vis="VisibleRed">
+      <zplane rmin="0" rmax="HcalBarrel_rmax+22*cm" z="-(2*HcalBarrel_zmax+10*cm)"/>
+      <zplane rmin="0" rmax="HcalBarrel_rmax+22*cm" z="-(2*HcalBarrel_zmax+20*cm)"/>
+    </module>
+    </detector>
+  </detectors>
+
+  <readouts>
+    <readout name="ContainmentHits">
+      <id>system:8,barrel:3</id>
+    </readout>
+  </readouts>
+  
+</lccdd>

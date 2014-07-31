@@ -68,11 +68,11 @@ or in (Geant4-like) interactive mode:
 
 Setup the environment for DDG4
 
-   source scripts/setup_DDG4.sh
+    source scripts/setup_DDG4.sh
 
 Run the DDG4 example
 
-   python scripts/example_Hcal_containment.py
+    python scripts/example_Hcal_containment.py
 
 Open the ROOT file
 

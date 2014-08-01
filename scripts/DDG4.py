@@ -20,11 +20,12 @@ def compileAClick(dictionary,g4=True):
   gSystem.AddIncludePath(inc)
   gSystem.AddLinkedLibs(lib)
   print "Includes:   ",gSystem.GetIncludePath(),"\n","Linked libs:",gSystem.GetLinkedLibs()
-  package = imp.find_module('DDG4')
-  dic = os.path.dirname(package[1])+os.sep+dictionary
-  ###print dic
-  gInterpreter.ProcessLine('.L '+dic+'+')
-  #####gInterpreter.Load('DDG4Dict_C.so')
+  user_paths = os.environ['PYTHONPATH'].split(os.pathsep)
+  for p in user_paths:
+    dic = p+os.sep+dictionary
+    if os.path.exists(dic):
+      gInterpreter.ProcessLine('.L '+dic+'+')
+      break
   from ROOT import DD4hep as module
   return module
 

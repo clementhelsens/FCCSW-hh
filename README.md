@@ -16,6 +16,7 @@ Source the setup script:
 
 Export the absolute path to the installation directory 
 
+    export MYLOCALDIR=`dirname $PWD`
     export MYINSTALLDIR=`dirname $PWD`/install
 
 Create build and install directories:
@@ -50,12 +51,6 @@ Do not forget to quit the ROOT window (.q) before running an other display
 
 ### Simulation (Geant4)
 
-To run geant4 one has still to set a few environment variables to point to G4 data files
-
-    export G4LEDATA=/afs/cern.ch/sw/geant4/releases/share/data/G4EMLOW6.37
-    export G4LEVELGAMMADATA=/afs/cern.ch/sw/geant4/releases/share/data/PhotonEvaporation3.1
-    export G4SAIDXSDATA=/afs/cern.ch/sw/geant4/releases/share/data/G4SAIDDATA1.1  
-
 at this point one can run FCChh_sim in batch mode:
 
     FCChh_sim file:../compact/FCCDectOpt02.xml file:../Hcal_Barrel.xml file:../compact/geant4.xml ../scripts/FCChh.in
@@ -74,7 +69,8 @@ Run the DDG4 example
 
     python scripts/example_Hcal_containment.py
 
-Open the ROOT file
+Browse the file in ROOT, (load library and Open the ROOT file)
 
-    root -l file.root
+    root -l
     gSystem->Load("./scripts/DDG4Dict_C")
+    TFile *_file0 = TFile::Open("FILENAME.root")       

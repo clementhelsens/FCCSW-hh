@@ -48,6 +48,7 @@ set(EXAMPLEFCC0_SCRIPTS
   run.mac
   run.png
   vis.mac
+  FCCContainment_pi.mac
   )
 
 foreach(_script ${EXAMPLEFCC0_SCRIPTS})

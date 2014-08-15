@@ -29,7 +29,7 @@
 /// \brief Implementation of the FCC0DetectorConstruction class
 
 #include "FCC0DetectorConstruction.hh"
-#include "FCC0EmCalorimeterSD.hh"
+#include "FCC0ContainmentSD.hh"
 
 #include "G4NistManager.hh"
 #include "G4Material.hh"
@@ -172,8 +172,8 @@ void FCC0DetectorConstruction::ConstructSDandField()
   // Sensitive detectors
   //
 
-  FCC0EmCalorimeterSD* calorimeterSD 
-    = new FCC0EmCalorimeterSD("EmCalorimeterSD", "EmCalorimeterHitsCollection", fnlambda);
+  FCC0ContainmentSD* calorimeterSD 
+    = new FCC0ContainmentSD("ContainmentSD", "ContainmentHitsCollection", fnlambda);
   for (G4int i=0; i<fnlambda; ++i) {
 
     std::ostringstream stmp ;

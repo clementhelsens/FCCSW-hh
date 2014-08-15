@@ -74,7 +74,7 @@ int main(int argc,char** argv)
   G4String macro;
   G4String session;
   G4String physicsListName;
-  G4int threads;
+  G4int threads = 1;
   for ( G4int i=1; i<argc; i=i+2 ) {
     if      ( G4String(argv[i]) == "-m" ) macro = argv[i+1];
     else if ( G4String(argv[i]) == "-u" ) session = argv[i+1];

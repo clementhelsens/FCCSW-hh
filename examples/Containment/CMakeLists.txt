@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------
 # Setup the project
 cmake_minimum_required(VERSION 2.6 FATAL_ERROR)
-project(ED)
+project(FCC0)
 
 #----------------------------------------------------------------------------
 # Find Geant4 package, activating all available UI and Vis drivers by default
@@ -33,15 +33,15 @@ file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 #----------------------------------------------------------------------------
 # Add the executable, and link it to the Geant4 libraries
 #
-add_executable(exampleED exampleED.cc ${sources} ${headers})
-target_link_libraries(exampleED ${Geant4_LIBRARIES})
+add_executable(exampleFCC0 exampleFCC0.cc ${sources} ${headers})
+target_link_libraries(exampleFCC0 ${Geant4_LIBRARIES})
 
 #----------------------------------------------------------------------------
 # Copy all scripts to the build directory, i.e. the directory in which we
-# build ED. This is so that we can run the executable directly because it
+# build FCC0. This is so that we can run the executable directly because it
 # relies on these scripts being in the current working directory.
 #
-set(EXAMPLEED_SCRIPTS
+set(EXAMPLEFCC0_SCRIPTS
   init.mac
   init_vis.mac
   icons.mac
@@ -50,7 +50,7 @@ set(EXAMPLEED_SCRIPTS
   vis.mac
   )
 
-foreach(_script ${EXAMPLEED_SCRIPTS})
+foreach(_script ${EXAMPLEFCC0_SCRIPTS})
   configure_file(
     ${PROJECT_SOURCE_DIR}/${_script}
     ${PROJECT_BINARY_DIR}/${_script}
@@ -62,11 +62,11 @@ endforeach()
 # For internal Geant4 use - but has no effect if you build this
 # example standalone
 #
-add_custom_target(ED DEPENDS exampleED)
+add_custom_target(FCC0 DEPENDS exampleFCC0)
 
 #----------------------------------------------------------------------------
 # Install the executable to 'bin' directory under CMAKE_INSTALL_PREFIX
 #
-install(TARGETS exampleED DESTINATION bin)
+install(TARGETS exampleFCC0 DESTINATION bin)
 
 

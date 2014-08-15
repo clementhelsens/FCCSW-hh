@@ -70,18 +70,20 @@ FCC0RunAction::FCC0RunAction()
   // in B4Analysis.hh
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
   analysisManager->SetVerboseLevel(1);
+  analysisManager->SetFileName("FCC0");
   G4cout << "Using " << analysisManager->GetType() 
          << " analysis manager" << G4endl;
 
   // Creating histograms
   //
-  analysisManager->CreateH1("leakage", "leakage", 100, 0., 100*GeV);
+  //analysisManager->CreateH1("leakage", "leakage", 100, 0., 100*GeV);
 
   // Creating ntuples
   //
   analysisManager->CreateNtuple("Leakage", "Leakage");
-  analysisManager->CreateNtupleIColumn("Layer");   // column id = 0 
-  analysisManager->CreateNtupleDColumn("Energy");    // column id = 1 
+  analysisManager->CreateNtupleIColumn("Event");     // column id = 0 
+  analysisManager->CreateNtupleIColumn("Layer");     // column id = 1
+  analysisManager->CreateNtupleDColumn("Energy");    // column id = 2 
   analysisManager->FinishNtuple();
 
   
@@ -118,9 +120,8 @@ void FCC0RunAction::BeginOfRunAction(const G4Run* run)
 
   // Open an output file
   //
-  G4String fileName = "FCC0";
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
-  analysisManager->OpenFile(fileName);
+  analysisManager->OpenFile();
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

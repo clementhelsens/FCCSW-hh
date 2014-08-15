@@ -49,6 +49,7 @@ FCC0ContainmentSD::FCC0ContainmentSD(const G4String& name,
    fNlayers(Nlayers)
 {
   collectionName.insert(hitsCollectionName);
+  eventNum = 0;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -132,7 +133,6 @@ void FCC0ContainmentSD::EndOfEvent(G4HCofThisEvent* /*hce*/)
 {
   G4cout << "\n-------->" <<  fHitsCollection->GetName() 
          << ": in this event: " << G4endl;
-
   G4int nofHits = fHitsCollection->entries();
   //for ( G4int i=0; i<nofHits; i++ ) (*fHitsCollection)[i]->Print();
 
@@ -157,12 +157,15 @@ void FCC0ContainmentSD::EndOfEvent(G4HCofThisEvent* /*hce*/)
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
   for ( G4int i=0; i<fNlayers; i++ ){
     G4cout << "leakage layer " << i << "   " << G4BestUnit(eleakage[i],"Energy") << "   " << G4BestUnit(mleakage[i],"Energy") << G4endl;    
-    analysisManager->FillNtupleIColumn(0, 0, i);
-  analysisManager->FillNtupleDColumn(0, 1, eleakage[i]);
-  analysisManager->AddNtupleRow(0);  
+    analysisManager->FillNtupleIColumn(0, 0, eventNum);
+    analysisManager->FillNtupleIColumn(0, 1, i);
+    analysisManager->FillNtupleDColumn(0, 2, eleakage[i]);
+    analysisManager->AddNtupleRow(0);  
+
   }
   //analysisManager->FillH1(0, eleakage);
-  
+  eventNum+=1;
+
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

@@ -1,0 +1,5 @@
+/gun/energy 100 GeV
+/gun/particle pi+
+/analysis/setFileName Pion100GeV
+/run/beamOn 3
+exit

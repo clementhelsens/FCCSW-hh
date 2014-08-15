@@ -55,7 +55,7 @@
 namespace {
   void PrintUsage() {
     G4cerr << " Usage: " << G4endl;
-    G4cerr << " exampleB4a [-m macro ] [-p physList ] [-u UIsession] [-t threads]" << G4endl;
+    G4cerr << " exampleB4a [-i] [-m macro ] [-p physList ] [-u UIsession] [-t threads]" << G4endl;
     G4cerr << G4endl;
   }
 }
@@ -66,7 +66,7 @@ int main(int argc,char** argv)
 {
   // Evaluate arguments
   //
-  if ( argc > 7 ) {
+  if ( argc > 10 ) {
     PrintUsage();
     return 1;
   }
@@ -75,11 +75,13 @@ int main(int argc,char** argv)
   G4String session;
   G4String physicsListName;
   G4int threads = 1;
+  bool isBatchMode = false;
   for ( G4int i=1; i<argc; i=i+2 ) {
     if      ( G4String(argv[i]) == "-m" ) macro = argv[i+1];
     else if ( G4String(argv[i]) == "-u" ) session = argv[i+1];
     else if ( G4String(argv[i]) == "-p" ) physicsListName = argv[i+1];
     else if ( G4String(argv[i]) == "-t" ) threads = atoi(argv[i+1]);
+    else if ( G4String(argv[i]) == "-i" ) {isBatchMode = true; i=1-1;}
 
     else {
       PrintUsage();
@@ -139,10 +141,20 @@ int main(int argc,char** argv)
   // Get the pointer to the User Interface manager
   G4UImanager* UImanager = G4UImanager::GetUIpointer();
 
-  if ( macro.size() ) {
+
+  if (isBatchMode)   // batch mode  
+    {
+      G4String command = "/control/execute ";
+      G4String fileName = argv[argc-1];
+      UImanager->ApplyCommand(command+fileName);
+    }
+
+  if ( macro.size() || isBatchMode ) {
     // batch mode
-    G4String command = "/control/execute ";
-    UImanager->ApplyCommand(command+macro);
+    if (macro.size()){
+      G4String command = "/control/execute ";
+      UImanager->ApplyCommand(command+macro);
+    }
   }
   else {
     // interactive mode : define UI session
@@ -154,7 +166,7 @@ int main(int argc,char** argv)
     UImanager->ApplyCommand("/control/execute init.mac"); 
 #endif
     if (ui->IsGUI()) {
-       UImanager->ApplyCommand("/control/execute icons.mac");
+      UImanager->ApplyCommand("/control/execute icons.mac");
     }
     ui->SessionStart();
     delete ui;

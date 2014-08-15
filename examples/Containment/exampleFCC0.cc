@@ -142,13 +142,6 @@ int main(int argc,char** argv)
   G4UImanager* UImanager = G4UImanager::GetUIpointer();
 
 
-  if (isBatchMode)   // batch mode  
-    {
-      G4String command = "/control/execute ";
-      G4String fileName = argv[argc-1];
-      UImanager->ApplyCommand(command+fileName);
-    }
-
   if ( macro.size() || isBatchMode ) {
     // batch mode
     if (macro.size()){

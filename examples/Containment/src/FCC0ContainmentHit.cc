@@ -46,9 +46,7 @@ G4ThreadLocal G4Allocator<FCC0ContainmentHit>* FCC0ContainmentHitAllocator = 0;
 FCC0ContainmentHit::FCC0ContainmentHit()
  : G4VHit(),
    fLayerNumber(-1),
-   fEdep(0.),
-   fPosition()
-
+   fEdep(0.)
 {}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -83,9 +81,7 @@ void FCC0ContainmentHit::Print()
 {
   //  if ( fEdep > 0. ) {
     G4cout << "Containment hit in layer: " << fLayerNumber 
-           << "  kinEnergy: " << std::setw(7) << G4BestUnit(fKinEnergy,"Energy")
-	   << "   position [mm]: " <<  fPosition/mm
- 	   << "   momentum : " <<  fMomentum
+           << "  Edep: " << std::setw(7) << G4BestUnit(fEdep,"Energy")
 	   << G4endl;
     //}          
 }

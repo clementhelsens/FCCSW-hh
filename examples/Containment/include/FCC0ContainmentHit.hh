@@ -56,27 +56,14 @@ public:
   // add setter/getter methods
   void SetLayerNumber(G4int number) { fLayerNumber = number; }
   void AddEdep(G4double edep)       { fEdep += edep; }
-  void SetPosition(G4ThreeVector position) { fPosition = position; }
-  void SetMomentum(G4ThreeVector momentum) { fMomentum = momentum;}
-  void SetKinEnergy(G4double kinEnergy)    {fKinEnergy = kinEnergy;}
-  void SetGlobalTime(G4double globalTime)  {fGlobalTime = globalTime;}
-
   
   G4int    GetLayerNumber() const { return fLayerNumber;}
   G4double GetEdep() const        { return fEdep; }
-  G4ThreeVector  GetPosition() const    { return fPosition; } 
-  G4ThreeVector  GetMomentum() const    { return fMomentum; } 
-  G4double GetKinEnergy() const { return fKinEnergy;}
-  G4double GetGlobalTime() const { return fGlobalTime;}
   
 private:
   // add data members
   G4int     fLayerNumber;
   G4double  fEdep;
-  G4ThreeVector  fPosition;
-  G4double fGlobalTime;
-  G4double fKinEnergy;
-  G4ThreeVector fMomentum;
 };
 
 typedef G4THitsCollection<FCC0ContainmentHit> FCC0ContainmentHitsCollection;

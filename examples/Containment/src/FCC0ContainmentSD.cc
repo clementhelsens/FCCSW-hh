@@ -70,15 +70,11 @@ void FCC0ContainmentSD::Initialize(G4HCofThisEvent* hce)
     = G4SDManager::GetSDMpointer()->GetCollectionID(collectionName[0]);
   hce->AddHitsCollection( hcID, fHitsCollection ); 
 
-  /*  for (G4int i=0; i<1; i++ ) {
+  for (G4int i=0; i<fNlayers; i++ ) {
     FCC0ContainmentHit* newHit = new FCC0ContainmentHit();
     newHit->SetLayerNumber(i);
     fHitsCollection->insert(newHit);
-    G4cout << "  ------------------------------> layer num   " << i << G4endl;
-    G4cout << "  fHitsCollection->entries()  " << fHitsCollection->entries() << " fHitsCollection " << fHitsCollection << G4endl;
     }
-    G4cout << "fHitsCollection->entries()  " << fHitsCollection->entries() << " fHitsCollection " << fHitsCollection << G4endl;*/
-
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -87,7 +83,28 @@ G4bool FCC0ContainmentSD::ProcessHits(G4Step* step,
                                       G4TouchableHistory* /*history*/)
 {
 
-  FCC0ContainmentHit* newHit = new FCC0ContainmentHit();
+  G4double edep = step->GetTotalEnergyDeposit();
+  if ( edep==0. ) return false;     
+  
+  G4TouchableHistory* touchable
+    = (G4TouchableHistory*)(step->GetPreStepPoint()->GetTouchable());
+  G4VPhysicalVolume* layerPV = touchable->GetVolume();
+  G4int layerNumber = layerPV->GetCopyNo();
+  
+  // Get hit accounting data for this layer
+  FCC0ContainmentHit* hit = (*fHitsCollection)[layerNumber];
+  if ( ! hit ) {
+    G4cerr << "Cannot access hit " << layerNumber << G4endl;
+    exit(1);
+  }         
+  
+  // Add values
+  hit->AddEdep(edep);
+
+  return true;
+
+
+  /*FCC0ContainmentHit* newHit = new FCC0ContainmentHit();
 
 
   G4StepPoint* preStepPoint = step->GetPreStepPoint();
@@ -123,7 +140,7 @@ G4bool FCC0ContainmentSD::ProcessHits(G4Step* step,
   else
     track->SetTrackStatus(fStopAndKill);
   //exit(1);
-  return false;
+  return false;*/
 
 }
 
@@ -138,32 +155,21 @@ void FCC0ContainmentSD::EndOfEvent(G4HCofThisEvent* /*hce*/)
 
   // Loop over hits
   // and fill each value in appropriate histogram
-  G4double eleakage[fNlayers];
-  G4double mleakage[fNlayers];
-  for ( G4int i=0; i<fNlayers; i++ )  {
-    eleakage[i]=0.;
-    mleakage[i]=0.;
-  }
-  
   G4cout << " ==  nofHits  == " << nofHits << G4endl;
+  G4double esum=0.;
+  G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
   for ( G4int i=0; i<nofHits; i++ )  {
     FCC0ContainmentHit* hit = (FCC0ContainmentHit*)(*fHitsCollection)[i];
-    eleakage[hit->GetLayerNumber()]+= hit->GetKinEnergy();
-    mleakage[hit->GetLayerNumber()]+= hit->GetMomentum().mag();
-
-    //G4cout << " hit->GetKinEnergy()  " <<  hit->GetKinEnergy() << G4endl;
-  } 
-
-  G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
-  for ( G4int i=0; i<fNlayers; i++ ){
-    G4cout << "leakage layer " << i << "   " << G4BestUnit(eleakage[i],"Energy") << "   " << G4BestUnit(mleakage[i],"Energy") << G4endl;    
+    G4double edep = hit->GetEdep();
     analysisManager->FillNtupleIColumn(0, 0, eventNum);
     analysisManager->FillNtupleIColumn(0, 1, i);
-    analysisManager->FillNtupleDColumn(0, 2, eleakage[i]);
+    analysisManager->FillNtupleDColumn(0, 2, edep);
     analysisManager->AddNtupleRow(0);  
+    //G4cout << " energy deposited in layer " << i << "   " << G4BestUnit(edep,"Energy") << G4endl; 
+    esum+=edep;
+  } 
+  G4cout << " energy deposited sum "  << "   " << G4BestUnit(esum,"Energy") << G4endl; 
 
-  }
-  //analysisManager->FillH1(0, eleakage);
   eventNum+=1;
 
 }

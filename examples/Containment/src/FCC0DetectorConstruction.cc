@@ -63,8 +63,7 @@ G4VPhysicalVolume* FCC0DetectorConstruction::Construct()
   G4NistManager* nistManager = G4NistManager::Instance();
 
   // Build materials
-  G4Material* air = nistManager->FindOrBuildMaterial("G4_Galactic");
-  //  G4Material* copper = nistManager->FindOrBuildMaterial("G4_Cu");
+  G4Material* air = nistManager->FindOrBuildMaterial("G4_AIR");
   G4Material* iron = nistManager->FindOrBuildMaterial("G4_Fe");
   //G4Material* tungsten = nistManager->FindOrBuildMaterial("G4_W");
 
@@ -81,9 +80,9 @@ G4VPhysicalVolume* FCC0DetectorConstruction::Construct()
   //     
   // World
   //
-  G4double hx = 20.*m;
-  G4double hy = 20.*m;
-  G4double hz = 20.*m;
+  G4double hx = 30.*m;
+  G4double hy = 30.*m;
+  G4double hz = 30.*m;
   
   // world volume
   G4Box* worldS = new G4Box("World", hx, hy, hz); 
@@ -110,50 +109,33 @@ G4VPhysicalVolume* FCC0DetectorConstruction::Construct()
   G4double dphi = 360.*deg;
   
   G4double lambda = 16.77*cm;
-  G4double airdr = 0.1*cm;
+  G4double dlambda = 0.1;
 
-  fnlambda = 15;
+  G4int lambdamax = 15;
+
+  fnlambda = (G4int)lambdamax/dlambda;
+  dlambda = dlambda*cm;
 
   for (G4int i=0; i<fnlambda; ++i) {
 
     std::ostringstream stmp ;
     stmp << i ;
     //std::string stmp = std::to_string(i);
-    G4String Name = "TubeAir"+(G4String)stmp.str();
+    G4String Name = "Tube"+(G4String)stmp.str();
 
     G4cout << "---------------------  NAME  " << Name << G4endl;
     // tube iron
-    G4VSolid* tubeS = new G4Tubs("Tube", rmin+i*(lambda+airdr), rmin+(i+1)*lambda + i*airdr, hz, phimin, dphi);
-    G4LogicalVolume* tubeLV = new G4LogicalVolume(tubeS, iron, "Tube");
+    G4VSolid* tubeS = new G4Tubs(Name, rmin+i*lambda*dlambda, rmin+(i+1)*lambda*dlambda, hz, phimin, dphi);
+    G4LogicalVolume* tubeLV = new G4LogicalVolume(tubeS, iron, Name);
     
-    // tube air
-    G4VSolid* tubeAirS = new G4Tubs(Name, rmin+(i+1)*lambda + i*airdr, rmin+(i+1)*(lambda+airdr), hz, phimin, dphi);
-    G4LogicalVolume* tubeAirLV = new G4LogicalVolume(tubeAirS, air, Name);
-    
-    G4cout << rmin+i*(lambda+airdr) << ", " << rmin+(i+1)*lambda + i*airdr << ", " << rmin+(i+1)*lambda + i*airdr << ", "<< rmin+(i+1)*(lambda+airdr)<<G4endl;
-
     new G4PVPlacement(0, 
-		      G4ThreeVector(),       //at (0,0,0)
-		      tubeLV,                //its logical volume
-		      "Tube",                //its name
-		      worldLV,               //its mother  volume
-		      false,                 //no boolean operation
-		      i,                     //copy number
-		      checkOverlaps);        //overlaps checking
-
-
-
-    new G4PVPlacement(0, 
-		      G4ThreeVector(),       //at (0,0,0)
-		      tubeAirLV,                //its logical volume
+		      G4ThreeVector(),     //at (0,0,0)
+		      tubeLV,              //its logical volume
 		      Name,                //its name
-		      worldLV,               //its mother  volume
-		      false,                 //no boolean operation
-		      i,                     //copy number
-		      checkOverlaps);        //overlaps checking
-    
-    //tubeAirLV->SetSensitiveDetector(calorimeterSD);
-
+		      worldLV,             //its mother  volume
+		      false,               //no boolean operation
+		      i,                   //copy number
+		      checkOverlaps);      //overlaps checking
   }
 
   
@@ -179,10 +161,7 @@ void FCC0DetectorConstruction::ConstructSDandField()
     std::ostringstream stmp ;
     stmp << i ;
     //std::string stmp = std::to_string(i);
-    G4String Name = "TubeAir"+(G4String)stmp.str();
-
-    //std::string stmp44 = std::to_string(i);
-    //G4String Name = "TubeAir"+(G4String)stmp;
+    G4String Name = "Tube"+(G4String)stmp.str();
     SetSensitiveDetector(Name, calorimeterSD);
   }
 }  

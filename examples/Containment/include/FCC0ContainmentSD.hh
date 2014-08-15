@@ -54,6 +54,7 @@ public:
 private:
   FCC0ContainmentHitsCollection* fHitsCollection;
   G4int fNlayers;
+  G4int eventNum;
 };
 
 

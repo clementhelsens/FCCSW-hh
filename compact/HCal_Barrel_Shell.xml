@@ -41,4 +41,14 @@
     </readout>
   </readouts>
   
+  <sensitive_detectors>
+    <sd name="HcalBarrelShell" 
+        type="DD4hepExN04CalorimeterSD"
+        <!--type="EscapeCounter"-->
+        ecut="0.5*keV" 
+        verbose="true" 
+        hit_aggregation="position">
+    </sd>
+  </sensitive_detectors>
+
 </lccdd>

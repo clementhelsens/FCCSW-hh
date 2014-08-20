@@ -114,7 +114,6 @@ G4VPhysicalVolume* FCC0DetectorConstruction::Construct()
   G4int lambdamax = 15;
 
   fnlambda = (G4int)lambdamax/dlambda;
-  dlambda = dlambda*cm;
 
   for (G4int i=0; i<fnlambda; ++i) {
 

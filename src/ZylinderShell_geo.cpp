@@ -19,6 +19,7 @@ static Ref_t create_detector(LCDD& lcdd, xml_h e, SensitiveDetector sensitive)  
   Assembly   assembly(name+"_assembly");
   Material   mat    (lcdd.material(x_det.materialStr()));
   PlacedVolume pv;
+  sensitive.setType("calorimeter");
 
   for(xml_coll_t m(e,_U(module)); m; ++m)  {
     xml_comp_t mod = m;

@@ -55,7 +55,7 @@ void ExN04CalorimeterSD::Initialize(G4HCofThisEvent*)
   {
     CellID[j][k] = -1;
   }
-  verboseLevel = 0;
+  verboseLevel = 10;
 }
 
 G4bool ExN04CalorimeterSD::ProcessHits(G4Step*aStep,G4TouchableHistory*ROhist)

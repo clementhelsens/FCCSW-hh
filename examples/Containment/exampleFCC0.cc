@@ -30,6 +30,7 @@
 
 #include "FCC0DetectorConstruction.hh"
 #include "FCC0ActionInitialization.hh"
+#include "FCC0GdmlInterface.hh"
 
 #ifdef G4MULTITHREADED
 #include "G4MTRunManager.hh"
@@ -109,6 +110,8 @@ int main(int argc,char** argv)
   // Detector construction
   runManager->SetUserInitialization(new FCC0DetectorConstruction());
 
+
+
   // Physics list
   if ( physicsListName.size() == 0 ) physicsListName = "QGSP_BERT";
   G4PhysListFactory physListFactory;
@@ -165,6 +168,11 @@ int main(int argc,char** argv)
     delete ui;
 #endif
   }
+
+
+  FCC0GdmlInterface GdmlInterface;
+  GdmlInterface.WriteGDML("FCC0.gdml");
+
 
   // Job termination
   // Free the store: user actions, physics_list and detector_description are

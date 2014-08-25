@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--DOCTYPE FADS SYSTEM "material.dtd"-->
+
+<Materials>
+
+<!-- All elements with a density associated are treated as materials -->
+
+  <element name="Hydrogen" 	symbol="H"    z=" 1"   aweight="1.00797*g/mole"  density="0.0708*g/cm3" />       
+  <element name="Deuterium" 	symbol="D "   z=" 1"   aweight="2.01*g/mole"     density="0.162*g/cm3"  />       
+  <element name="Helium" 	symbol="He"   z=" 2"   aweight="4.0026*g/mole"   density="0.125*g/cm3"  />
+  <element name="Lithium" 	symbol="Li"   z=" 3"   aweight="6.9410*g/mole"   density="0.534*g/cm3"  />
+  <element name="Beryllium" 	symbol="Be"   z=" 4"   aweight="9.0122*g/mole"   density="1.8480*g/cm3" />
+  <element name="Boron10" 	symbol="B10"  z=" 5"   aweight="10.0*g/mole"     density="2.34*g/cm3"   />
+  <element name="Boron11" 	symbol="B11"  z=" 5"   aweight="11.0*g/mole"     density="2.34*g/cm3"   />
+  <element name="Carbon" 	symbol="C"    z=" 6"   aweight="12.011*g/mole "  density="2.2650*g/cm3" />
+  <element name="Nitrogen" 	symbol="N"    z=" 7"   aweight="14.0067*g/mole " density="0.808*g/cm3"  />
+  <element name="Oxygen" 	symbol="O"    z=" 8"   aweight="15.9995*g/mole " density="0.00143*g/cm3"/>
+  <element name="Fluorine" 	symbol="F"    z=" 9"   aweight="18.9984*g/mole " density="1.1080*g/cm3" />
+  <element name="Neon" 		symbol="Ne"   z="10"   aweight="20.179*g/mole"   density="1.2070*g/cm3" />
+  <element name="Sodium" 	symbol="Na"   z="11"   aweight="22.9898*g/mole " density="0.969*g/cm3"  />
+  <element name="Magnesium" 	symbol="Mg"   z="12"   aweight="24.305*g/mole"   density="1.735*g/cm3"  />
+  <element name="Aluminum" 	symbol="Al"   z="13"   aweight="26.9815*g/mole"  density="2.700*g/cm3"  />
+  <element name="Silicon" 	symbol="Si"   z="14"   aweight="28.086*g/mole"   density="2.33*g/cm3"   />
+  <element name="Phosphorus" 	symbol="P"    z="15"   aweight="30.9738*g/mole " density="1.82*g/cm3"   />
+  <element name="Sulfur" 	symbol="S"    z="16"   aweight="32.06*g/mole "   density="2.07*g/cm3"   />
+  <element name="Chlorine" 	symbol="Cl"   z="17"   aweight="35.453*g/mole "  density="1.56*g/cm3"   />
+  <element name="Argon" 	symbol="Ar"   z="18"   aweight="39.948*g/mole"   density="0.001639*g/cm3"/>
+  <element name="Potassium" 	symbol="K "   z="19"   aweight="39.098*g/mole "  density="0.860*g/cm3"  />
+  <element name="Calcium" 	symbol="Ca"   z="20"   aweight="40.08*g/mole "   density="1.55*g/cm3"   />
+  <element name="Scandium" 	symbol="Sc"   z="21"   aweight="44.956*g/mole "  density="2.98*g/cm3"   />
+  <element name="Titanium" 	symbol="Ti"   z="22"   aweight="47.90*g/mole "   density="4.53*g/cm3"   />
+  <element name="Vanadium" 	symbol="V"    z="23"   aweight="50.9414*g/mole " density="6.10*g/cm3"   />
+  <element name="Chromium" 	symbol="Cr"   z="24"   aweight="51.996*g/mole "  density="7.18*g/cm3"   />
+  <element name="Manganese" 	symbol="Mn"   z="25"   aweight="54.9830*g/mole " density="7.43*g/cm3"   />
+  <element name="Iron" 		symbol="Fe"   z="26"   aweight="55.847*g/mole"   density="7.87*g/cm3"   />
+  <element name="Cobalt" 	symbol="Co"   z="27"   aweight="58.9332*g/mole " density="8.90*g/cm3"   />
+  <element name="Nickel" 	symbol="Ni"   z="28"   aweight="58.70*g/mole "   density="8.876*g/cm3"  />
+  <element name="Copper" 	symbol="Cu"   z="29"   aweight="63.546*g/mole"   density="8.96*g/cm3"   />
+  <element name="Zinc" 		symbol="Zn"   z="30"   aweight="65.38*g/mole "   density="7.112*g/cm3"  />
+  <element name="Gallium" 	symbol="Ga"   z="31"   aweight="69.72*g/mole "   density="5.877*g/cm3"  />
+  <element name="Germanium" 	symbol="Ge"   z="32"   aweight="72.59*g/mole "   density="5.3230*g/cm3" />
+  <element name="Arsenic" 	symbol="As"   z="33"   aweight="74.9216*g/mole " density="5.72*g/cm3"   />
+  <element name="Selenium" 	symbol="Se"   z="34"   aweight="78.96*g/mole "   density="4.78*g/cm3"   />
+  <element name="Bromine" 	symbol="Br"   z="35"   aweight="79.904*g/mole "  density="3.11*g/cm3"   />
+  <element name="Krypton" 	symbol="Kr"   z="36"   aweight="83.80*g/mole"    density="2.60*g/cm3"   />
+  <element name="Rubidium" 	symbol="Rb"   z="37"   aweight="85.4678*g/mole " density="1.529*g/cm3"  />
+  <element name="Strontium" 	symbol="Sr"   z="38"   aweight="87.62*g/mole "   density="2.54*g/cm3"   />
+  <element name="Yttrium" 	symbol="Y"    z="39"   aweight="88.909*g/mole "  density="4.456*g/cm3"  />
+  <element name="Zirconium" 	symbol="Zr"   z="40"   aweight="91.22*g/mole "   density="6.494*g/cm3"  />
+  <element name="Niobium" 	symbol="Nb"   z="41"   aweight="92.9064*g/mole " density="8.55*g/cm3"   />
+  <element name="Molybdenum" 	symbol="Mo"   z="42"   aweight="95.94*g/mole "   density="10.20*g/cm3"  />
+  <element name="Technetium" 	symbol="Tc"   z="43"   aweight="97*g/mole "      density="11.48*g/cm3"  />
+  <element name="Ruthenium" 	symbol="Ru"   z="44"   aweight="101.07*g/mole "  density="12.39*g/cm3"  />
+  <element name="Rhodium" 	symbol="Rh"   z="45"   aweight="102.905*g/mole " density="12.39*g/cm3"  />
+  <element name="Palladium" 	symbol="Pd"   z="46"   aweight="106.04*g/mole "  density="12.00*g/cm3"  />
+  <element name="Silver" 	symbol="Ag"   z="47"   aweight="107.868*g/mole " density="10.48*g/cm3"  />
+  <element name="Cadmium" 	symbol="Cd"   z="48"   aweight="112.40*g/mole "  density="8.63*g/cm3"   />
+  <element name="Indium" 	symbol="In"   z="49"   aweight="114.82*g/mole "  density="7.30*g/cm3"   />
+  <element name="Tin" 		symbol="Sn"   z="50"   aweight="118.69*g/mole "  density="7.31*g/cm3"   />
+  <element name="Antimony" 	symbol="Sb"   z="51"   aweight="121.75*g/mole "  density="6.679*g/cm3"  />
+  <element name="Tellurium" 	symbol="Te"   z="52"   aweight="127.60*g/mole "  density="6.23*g/cm3"   />
+  <element name="Iodine" 	symbol="I"    z="53"   aweight="126.9046*g/mole" density="7.30*g/cm3"   />
+  <element name="Xenon" 	symbol="Xe"   z="54"   aweight="131.30*g/mole"   density="3.057*g/cm3"  />
+  <element name="Cesium" 	symbol="Cs"   z="55"   aweight="132.905*g/mole " density="1.870*g/cm3"  />
+  <element name="Barium" 	symbol="Ba"   z="56"   aweight="137.34*g/mole "  density="3.50*g/cm3"   />
+  <element name="Larthanum" 	symbol="La"   z="57"   aweight="138.91*g/mole "  density="6.127*g/cm3"  />
+  <element name="Cerium" 	symbol="Ce"   z="58"   aweight="140.12*g/mole "  density="6.637*g/cm3"  />
+  <element name="Praseodymium" 	symbol="Pr"   z="59"   aweight="140.908*g/mole " />
+  <element name="Neodymium" 	symbol="Nd"   z="60"   aweight="144.24*g/mole "  />
+  <element name="Promethium" 	symbol="Pm"   z="61"   aweight="145*g/mole "     />
+  <element name="Samarium" 	symbol="Sm"   z="62"   aweight="150.4*g/mole "   />
+  <element name="Europium" 	symbol="Eu"   z="63"   aweight="151.96*g/mole "  />
+  <element name="Gadolinium" 	symbol="Gd"   z="64"   aweight="157.25*g/mole "  />
+  <element name="Terbium" 	symbol="Tb"   z="65"   aweight="158.925*g/mole " />
+  <element name="Dysprosium" 	symbol="Dy"   z="66"   aweight="162.50*g/mole "  />
+  <element name="Holmium" 	symbol="Ho"   z="67"   aweight="164.930*g/mole " />
+  <element name="Erbium" 	symbol="Er"   z="68"   aweight="167.26*g/mole "  />
+  <element name="Thulium" 	symbol="Tm"   z="69"   aweight="168.934*g/mole " />
+  <element name="Ytterbium" 	symbol="Yb"   z="70"   aweight="173.04*g/mole "  />
+  <element name="Lutetium" 	symbol="Lu"   z="71"   aweight="174.97*g/mole"   />
+  <element name="Hafnium" 	symbol="Hf"   z="72"   aweight="178.49*g/mole "  />
+  <element name="Tantalum" 	symbol="Ta"   z="73"   aweight="180.948*g/mole " />
+  <element name="Tungsten" 	symbol="W"    z="74"   aweight="183.85*g/mole "  density="19.3*g/cm3"   />
+  <element name="Rhenium" 	symbol="Re"   z="75"   aweight="186.207*g/mole " />
+  <element name="Osmium" 	symbol="Os"   z="76"   aweight="190.2*g/mole "   />
+  <element name="Iridium" 	symbol="Ir"   z="77"   aweight="192.22*g/mole "  />
+  <element name="Platinum" 	symbol="Pt"   z="78"   aweight="195.09*g/mole "  />
+  <element name="Gold" 		symbol="Au"   z="79"   aweight="196.967*g/mole " density="18.85*g/cm3"  />
+  <element name="Mercury" 	symbol="Hg"   z="80"   aweight="200.59*g/mole "  />
+  <element name="Thallium" 	symbol="Tl"   z="81"   aweight="204.37*g/mole "  />
+  <element name="Lead" 		symbol="Pb"   z="82"   aweight="207.2*g/mole "   density="11.35*g/cm3"  />
+  <element name="Bismuth" 	symbol="Bi"   z="83"   aweight="208.980*g/mole " density="9.37*g/cm3"   />
+  <element name="Polonium" 	symbol="Po"   z="84"   aweight="209*g/mole "     />
+  <element name="Astatine" 	symbol="At"   z="85"   aweight="210*g/mole "     />
+  <element name="Radon" 	symbol="Rn"   z="86"   aweight="222*g/mole"      />
+  <element name="Francium" 	symbol="Fr"   z="87"   aweight="223*g/mole "     />
+  <element name="Radium" 	symbol="Ra"   z="88"   aweight="226.03*g/mole "  />
+  <element name="Actinium" 	symbol="Ac"   z="89"   aweight="227*g/mole"      />
+  <element name="Thorium" 	symbol="Th"   z="90"   aweight="232.038*g/mole " />
+  <element name="Protactinium" 	symbol="Pa"   z="91"   aweight="231.038*g/mole " />
+  <element name="Uranium" 	symbol="U"    z="92"   aweight="238.03*g/mole "  density="18.950*g/cm3" />
+  <element name="Neptunium" 	symbol="Np"   z="93"   aweight="237.048*g/mole " />
+
+<!-- example of a molecule -->
+
+  <mixture  name="Scintillator" density="1.032*g/cm3" ncomponents="2" >
+    <addmaterial material="C" natoms="9"/> 
+    <addmaterial material="H" natoms="10"/>
+  </mixture>
+  
+<!-- example of a mixture -->
+  
+  <mixture  name="Air" density="0.001214*g/cm3" ncomponents="4" >
+    <addmaterial material="Nitrogen" fractionmass="0.7494"/>
+    <addmaterial material="Oxygen" fractionmass="0.2369"/>
+    <addmaterial material="Argon" fractionmass="0.0129"/>
+    <addmaterial material="Hydrogen" fractionmass="0.0008"/>
+  </mixture>
+  
+ </Materials>
+

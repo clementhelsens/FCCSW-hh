@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Geometry>
+
+<var name="X_world" value="100*m" />
+<var name="Y_world" value="100*m" />
+<var name="Z_world" value="200*m" />
+
+<box name="world_volume" material="Air" X="X_world" Y="Y_world" Z="Z_world" />
+<World volume="world_volume" />
+
+<pgon name="a_pgon" material="Carbon" nSidesPhi="8"  >
+	<zPlane Rio_Z="5.*m;15.*m;-5.*m" />
+	<zPlane Rio_Z="5.*m;7.*m;-25.*m" />
+	<zPlane Rio_Z="3.*m;10.*m;-45.*m" />
+	<zPlane Rio_Z="7.*m;25.*m;-65.*m" />
+</pgon>
+
+<position daughter="a_pgon" translate="10*m;-2*m;0" rotate="20.*deg;0.;30.*deg" />
+
+<pcon name="a_pcon" material="Carbon" >
+	<zPlane Rio_Z="5.*m;15.*m;-25.*m" />
+	<zPlane Rio_Z="5.*m;7.*m;-45.*m" />
+	<zPlane Rio_Z="3.*m;10.*m;-65.*m" />
+	<zPlane Rio_Z="7.*m;25.*m;-85.*m" />
+</pcon>
+
+<position daughter="a_pcon" translate="20*m;40*m;-10*m" rotate="20.*deg;0.;0" />
+
+
+<tubs name="a_tube" material="Iron" Rio_Z="0.;10*m;30*m" >
+	<position translate="0;0;20*m" rotate="30*deg;0;0" />
+</tubs>
+
+<box name="a_box" material="Air" X="2*m" Y="4*m" Z="4*m" />
+
+<position daughter="a_box" mother="a_tube" translate="3.*m;3*m;0" />
+  
+</Geometry>
+

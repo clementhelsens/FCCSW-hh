@@ -8,6 +8,8 @@
 #include "G4Element.hh"
 #include "G4Box.hh"
 #include "G4Tubs.hh"
+#include "G4Trd.hh"
+#include "G4Cons.hh"
 #include "G4Polycone.hh"
 #include "G4Polyhedra.hh"
 #include "G4Colour.hh"
@@ -109,6 +111,19 @@ G4VSolid* Geant4Factory::CreateTubs(std::string name, double Ri,double Ro,double
 	theSolids.push_back(aTube);
 	return aTube;
 }
+G4VSolid* Geant4Factory::CreateTrd(std::string name, double xMin,double xMax,double yMin,double yMax, double dZ)
+{
+	G4Trd* aTrd=new G4Trd(name,xMin/2.,xMax/2.,yMin/2.,yMax/2.,dZ/2.);
+	theSolids.push_back(aTrd);
+	return aTrd;
+}
+G4VSolid* Geant4Factory::CreateCons(std::string name, double R1i,double R1o, double R2i,double R2o,double zDim,double phi0, double dPhi)
+{
+	G4Cons* aCons=new G4Cons(name,R1i,R1o,R2i,R2o,zDim/2.,phi0,dPhi);
+	theSolids.push_back(aCons);
+	return aCons;
+}
+
 G4VSolid* Geant4Factory::CreatePcon(std::string name, int nPlanes, double phi0,double dPhi,double* ri,double* ro,double* z)
 {
 	G4Polycone* pCon=new G4Polycone(name,phi0,dPhi,nPlanes,z,ri,ro);

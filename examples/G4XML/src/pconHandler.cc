@@ -2,7 +2,7 @@
 #include "XercesParser.h"
 #include "polyplaneHandler.h"
 #include "Geant4Factory.h"
-#include "G4Box.hh"
+#include "G4Polycone.hh"
 #include <iostream>
 
 static pconHandler pcon("pcon");
@@ -18,7 +18,7 @@ void pconHandler::ElementHandle()
 	std::string material=getAttributeAsString("material",res);
 		
 	double phi0=0;
-	double dPhi=360*CLHEP::deg;
+	double dPhi=360.*CLHEP::deg;
 	std::vector<double> vvv=getAttributeAsVector("profile",res);
 	if (res)
 	{

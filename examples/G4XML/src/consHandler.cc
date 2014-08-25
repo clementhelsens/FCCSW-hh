@@ -1,10 +1,10 @@
 #include "consHandler.h"
 #include <iostream>
 
-#include "G4SolidStore.hh"
-#include "G4cons.hh"
+#include "Geant4Factory.h"
 #include "G4LogicalVolume.hh"
-#include "G4Material.hh"
+
+static consHandler cons("cons");
 
 consHandler::consHandler(std::string s):XMLHandler(s)
 {
@@ -26,19 +26,14 @@ void consHandler::ElementHandle()
 		dPhi=vvv[1];
 	}
 		
-	G4SolidStore* sStore=G4SolidStore::GetInstance();
-	G4VSolid* aSolid=sStore->GetSolid(name);
-	if (aSolid) 
+	Geant4Factory* factory=Geant4Factory::Factory();
+	if (factory->FindSolid(name)) 
 	{
 		std::cout<<"!!!! Warning !!!! solid "<<name<<" already in the store!!!! "<<std::endl;
 	}
-	G4Cons* aCons=new G4Cons(name,vv[0],vv[1],vv[2],vv[3],vv[4]/2.,phi0,dPhi);
+	G4VSolid *aCons=factory->CreateCons(name,vv[0],vv[1],vv[2],vv[3],vv[4],phi0,dPhi);
 	
 	if (material.empty()) return;
 	
-	G4Material *mat=G4Material::GetMaterial(material);
-	if (!mat) std::cout<<"!!!! Material "<<material<<" not found!!!! LV "<<name<<" has no material associated to it!!!!"<<std::endl;
-
-	G4LogicalVolume *lv;
-	lv=new G4LogicalVolume(aCons,mat,name);
+	factory->CreateLogicalVolume(name,material,aCons);
 }

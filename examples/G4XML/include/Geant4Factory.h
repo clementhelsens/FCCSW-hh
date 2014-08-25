@@ -25,6 +25,8 @@ public:
 	G4Colour*		GetColor(std::string);
 	G4VSolid* 		CreateBox(std::string, double,double,double);
 	G4VSolid* 		CreateTubs(std::string, double,double,double,double,double);
+	G4VSolid* 		CreateTrd(std::string, double,double,double,double,double);
+	G4VSolid* 		CreateCons(std::string,double,double,double,double,double,double,double);
 	G4VSolid* 		CreatePcon(std::string,int,double,double,double*,double*,double*);
 	G4VSolid* 		CreatePgon(std::string,int,int,double,double,double*,double*,double*);
 	G4LogicalVolume* 	CreateLogicalVolume(std::string,std::string,G4VSolid*);

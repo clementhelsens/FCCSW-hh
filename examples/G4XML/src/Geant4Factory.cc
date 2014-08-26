@@ -7,7 +7,10 @@
 #include "G4Material.hh"
 #include "G4Element.hh"
 #include "G4Box.hh"
+#include "G4Para.hh"
+#include "G4Orb.hh"
 #include "G4Tubs.hh"
+#include "G4Torus.hh"
 #include "G4Trd.hh"
 #include "G4Cons.hh"
 #include "G4Polycone.hh"
@@ -105,12 +108,36 @@ G4VSolid* Geant4Factory::CreateBox(std::string name, double xDim,double yDim,dou
 	theSolids.push_back(aBox);
 	return aBox;
 }
+
+G4VSolid* Geant4Factory::CreatePara(std::string name, double xDim,double yDim,double zDim, double alpha, double theta, double phi)
+{
+	G4Para* aPara=new G4Para(name,xDim/2.,yDim/2.,zDim/2.,alpha,theta,phi);
+	theSolids.push_back(aPara);
+	return aPara;
+}
+
+G4VSolid* Geant4Factory::CreateOrb(std::string name, double radius)
+{
+	G4Orb* anOrb=new G4Orb(name,radius);
+	theSolids.push_back(anOrb);
+	return anOrb;
+}
+
+
 G4VSolid* Geant4Factory::CreateTubs(std::string name, double Ri,double Ro,double zDim,double phi0, double dPhi)
 {
 	G4Tubs* aTube=new G4Tubs(name,Ri,Ro,zDim/2.,phi0,dPhi);
 	theSolids.push_back(aTube);
 	return aTube;
 }
+
+G4VSolid* Geant4Factory::CreateTorus(std::string name, double Ri,double Ro,double rTorus,double phi0, double dPhi)
+{
+	G4Torus* aTorus=new G4Torus(name,Ri,Ro,rTorus,phi0,dPhi);
+	theSolids.push_back(aTorus);
+	return aTorus;
+}
+
 G4VSolid* Geant4Factory::CreateTrd(std::string name, double xMin,double xMax,double yMin,double yMax, double dZ)
 {
 	G4Trd* aTrd=new G4Trd(name,xMin/2.,xMax/2.,yMin/2.,yMax/2.,dZ/2.);

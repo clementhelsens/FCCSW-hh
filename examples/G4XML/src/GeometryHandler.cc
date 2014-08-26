@@ -5,7 +5,12 @@ static GeometryHandler mats("Geometry");
 GeometryHandler::GeometryHandler(std::string s):XMLHandler(s)
 {
 	AddSupportedHandler("box");
+	AddSupportedHandler("para");
+	AddSupportedHandler("trd");
+	AddSupportedHandler("cons");
+	AddSupportedHandler("orb");
 	AddSupportedHandler("tubs");
+	AddSupportedHandler("torus");
 	AddSupportedHandler("pgon");
 	AddSupportedHandler("pcon");
 	AddSupportedHandler("World");

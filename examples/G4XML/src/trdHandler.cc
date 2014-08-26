@@ -10,7 +10,7 @@ static trdHandler trd("trd");
 
 trdHandler::trdHandler(std::string s):XMLHandler(s)
 {
-//	std::cout<<"Creating handler for trd"<<std::endl;
+	AddSupportedHandler("position");
 }
 
 void trdHandler::ElementHandle()
@@ -25,6 +25,7 @@ void trdHandler::ElementHandle()
 	{
 		std::cout<<"!!!! Warning !!!! solid "<<name<<" already in the store!!!! "<<std::endl;
 	}
+	std::cout<<"trdHandler "<<name<<" "<<vv[0]<<" "<<vv[1]<<" "<<vv[2]<<" "<<vv[3]<<" "<<vv[4]<<std::endl;
 	G4VSolid *aTrd=factory->CreateTrd(name,vv[0],vv[1],vv[2],vv[3],vv[4]);
 	
 	if (material.empty()) return;

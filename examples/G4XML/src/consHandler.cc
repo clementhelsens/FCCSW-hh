@@ -8,6 +8,7 @@ static consHandler cons("cons");
 
 consHandler::consHandler(std::string s):XMLHandler(s)
 {
+	AddSupportedHandler("position");
 }
 
 void consHandler::ElementHandle()

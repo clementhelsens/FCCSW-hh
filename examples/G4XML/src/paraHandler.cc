@@ -30,7 +30,7 @@ void paraHandler::ElementHandle()
 	{
 		std::cout<<"!!!! Warning !!!! solid "<<name<<" already in the store!!!! "<<std::endl;
 	}
-	G4VSolid *apara=factory->Createpara(name,xDim,yDim,zDim,alpha,theta,phi);
+	G4VSolid *apara=factory->CreatePara(name,xDim,yDim,zDim,alpha,theta,phi);
 	
 	if (material.empty()) return;
 	

@@ -23,8 +23,11 @@ public:
 	G4Material*	 	GetMaterial(std::string) const;
 	G4Element*		GetElement(std::string) const;
 	G4Colour*		GetColor(std::string);
+	G4VSolid* 		CreatePara(std::string, double,double,double,double,double,double);
 	G4VSolid* 		CreateBox(std::string, double,double,double);
+	G4VSolid* 		CreateOrb(std::string, double);
 	G4VSolid* 		CreateTubs(std::string, double,double,double,double,double);
+	G4VSolid* 		CreateTorus(std::string, double,double,double,double,double);
 	G4VSolid* 		CreateTrd(std::string, double,double,double,double,double);
 	G4VSolid* 		CreateCons(std::string,double,double,double,double,double,double,double);
 	G4VSolid* 		CreatePcon(std::string,int,double,double,double*,double*,double*);

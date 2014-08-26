@@ -27,6 +27,9 @@
 
 <position daughter="a_pcon" translate="20*m;40*m;-10*m" rotate="20.*deg;0.;0" />
 
+<torus name="a_torus" material="Iron" rMin="2*m" rMax="5*m" rTorus="20*m" profile="0;270*deg" >
+	<position translate="0;0;20*m" rotate="30*deg;0;0" />
+</torus>
 
 <tubs name="a_tube" material="Iron" Rio_Z="0.;10*m;30*m" >
 	<position translate="0;0;20*m" rotate="30*deg;0;0" />

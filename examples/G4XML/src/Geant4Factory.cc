@@ -10,9 +10,11 @@
 #include "G4Para.hh"
 #include "G4Orb.hh"
 #include "G4Tubs.hh"
+#include "G4CutTubs.hh"
 #include "G4Torus.hh"
 #include "G4Trd.hh"
 #include "G4Cons.hh"
+#include "G4Sphere.hh"
 #include "G4Polycone.hh"
 #include "G4Polyhedra.hh"
 #include "G4Colour.hh"
@@ -131,6 +133,18 @@ G4VSolid* Geant4Factory::CreateTubs(std::string name, double Ri,double Ro,double
 	return aTube;
 }
 
+G4VSolid* Geant4Factory::CreateCutTubs(std::string name, double Ri,double Ro,double zDim,double phi0, double dPhi, std::vector<double> lowNormV, std::vector<double> highNormV)
+{
+	G4ThreeVector v1,v2;
+	if (lowNormV.size()>=3)
+		v1=G4ThreeVector(lowNormV[0],lowNormV[1],lowNormV[2]);
+	if (highNormV.size()>=3)
+		v2=G4ThreeVector(highNormV[0],highNormV[1],highNormV[2]);
+	G4CutTubs* aTube=new G4CutTubs(name,Ri,Ro,zDim/2.,phi0,dPhi,v1,v2);
+	theSolids.push_back(aTube);
+	return aTube;
+}
+
 G4VSolid* Geant4Factory::CreateTorus(std::string name, double Ri,double Ro,double rTorus,double phi0, double dPhi)
 {
 	G4Torus* aTorus=new G4Torus(name,Ri,Ro,rTorus,phi0,dPhi);
@@ -157,6 +171,14 @@ G4VSolid* Geant4Factory::CreatePcon(std::string name, int nPlanes, double phi0,d
 	theSolids.push_back(pCon);
 	return pCon;
 }
+
+G4VSolid* Geant4Factory::CreateSphere(std::string name, double ri,double ro,double phi0,double dPhi,double theta0, double dTheta)
+{
+	G4Sphere* sphere=new G4Sphere(name,ri,ro,phi0,dPhi,theta0,dTheta);
+	theSolids.push_back(sphere);
+	return sphere;
+}
+
 G4VSolid* Geant4Factory::CreatePgon(std::string name, int nPlanes,int nPhiSides, double phi0,double dPhi,double* ri,double* ro,double* z)
 {
 	G4Polyhedra* pGon=new G4Polyhedra(name,phi0,dPhi,nPhiSides,nPlanes,z,ri,ro);

@@ -27,9 +27,11 @@ public:
 	G4VSolid* 		CreateBox(std::string, double,double,double);
 	G4VSolid* 		CreateOrb(std::string, double);
 	G4VSolid* 		CreateTubs(std::string, double,double,double,double,double);
+	G4VSolid* 		CreateCutTubs(std::string, double,double,double,double,double,std::vector<double>,std::vector<double>);
 	G4VSolid* 		CreateTorus(std::string, double,double,double,double,double);
 	G4VSolid* 		CreateTrd(std::string, double,double,double,double,double);
 	G4VSolid* 		CreateCons(std::string,double,double,double,double,double,double,double);
+	G4VSolid* 		CreateSphere(std::string,double,double,double,double,double,double);
 	G4VSolid* 		CreatePcon(std::string,int,double,double,double*,double*,double*);
 	G4VSolid* 		CreatePgon(std::string,int,int,double,double,double*,double*,double*);
 	G4LogicalVolume* 	CreateLogicalVolume(std::string,std::string,G4VSolid*);

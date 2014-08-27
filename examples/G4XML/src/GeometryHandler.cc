@@ -10,12 +10,14 @@ GeometryHandler::GeometryHandler(std::string s):XMLHandler(s)
 	AddSupportedHandler("cons");
 	AddSupportedHandler("orb");
 	AddSupportedHandler("tubs");
+	AddSupportedHandler("cutTubs");
 	AddSupportedHandler("torus");
 	AddSupportedHandler("pgon");
 	AddSupportedHandler("pcon");
 	AddSupportedHandler("World");
 	AddSupportedHandler("var");
 	AddSupportedHandler("position");
+	AddSupportedHandler("sphere");
 }
 
 void GeometryHandler::ElementHandle()

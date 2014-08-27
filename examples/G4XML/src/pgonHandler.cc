@@ -1,9 +1,12 @@
 #include "pgonHandler.h"
+#include <iostream>
+
+#include "polyplaneHandler.h"
 #include "XercesParser.h"
 #include "Geant4Factory.h"
-#include "G4Polyhedra.hh"
-#include "polyplaneHandler.h"
-#include <iostream>
+#include "G4VSolid.hh"
+#include "G4LogicalVolume.hh"
+#include "G4Material.hh"
 
 static pgonHandler pgon("pgon");
 

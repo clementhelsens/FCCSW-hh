@@ -34,6 +34,8 @@ public:
 	G4VSolid* 		CreateSphere(std::string,double,double,double,double,double,double);
 	G4VSolid* 		CreatePcon(std::string,int,double,double,double*,double*,double*);
 	G4VSolid* 		CreatePgon(std::string,int,int,double,double,double*,double*,double*);
+    G4VSolid*       CreateTrap(std::string,double, double, double,double, double,double, double,double, double ,double, double);
+    
 	G4LogicalVolume* 	CreateLogicalVolume(std::string,std::string,G4VSolid*);
 	G4Material*		CreateSimpleMaterial(std::string,double,double,double);
 	G4Material*		CreateMixture(std::string,double,int);

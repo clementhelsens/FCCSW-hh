@@ -39,9 +39,10 @@
 
 <position daughter="a_box" mother="a_tube" translate="3.*m;3*m;0" />
 
-<trap name="a_trap" material="Iron" twistedangle = "30*deg" pDz = "60*m" pTheta = "20*deg" pDphi = "5*deg" pDy1 = "40*m"  pDx1 = "30*m" pDx2 = "40*m" pDy2 = "16*m" pDx3 = "10*m" pDx4 = "14*m" pAlph = "10*deg" >
-<position translate="0;0;20*m" rotate="30*deg;0;0" />
-</trap>
+<trap name="a_trap" material="Iron" pDz = "60*m" pTheta = "20*deg" pPhi = "5*deg" pDy1 = "40*m"  pDx1 = "30*m" pDx2 = "40*m" pAlph1="10*deg" pDy2 = "16*m" pDx3 = "10*m" pDx4 = "14*m" pAlph2 = "10*deg" />
+
+<position daughter="a_trap" mother="a_tube" translate="3.*m;3*m;0" />
+
 
 </Geometry>
 

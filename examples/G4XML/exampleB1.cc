@@ -50,6 +50,8 @@
 #include "G4UIExecutive.hh"
 #endif
 
+
+
 #include <string>
 #include <vector>
 #include "Randomize.hh"
@@ -124,6 +126,9 @@ int main(int argc,char** argv)
   // Initialize G4 kernel
   //
   runManager->Initialize();
+    
+    
+
   
 #ifdef G4VIS_USE
   // Initialize visualization
@@ -133,6 +138,7 @@ int main(int argc,char** argv)
   visManager->Initialize();
 #endif
 
+    
   // Get the pointer to the User Interface manager
   G4UImanager* UImanager = G4UImanager::GetUIpointer();
 

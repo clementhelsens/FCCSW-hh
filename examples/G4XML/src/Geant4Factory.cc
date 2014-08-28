@@ -174,7 +174,7 @@ G4VSolid* Geant4Factory::CreateTrap(std::string name,double pDz,double pTheta,do
 
 G4LogicalVolume* Geant4Factory::CreateLogicalVolume(std::string name,std::string material,G4VSolid* solid)
 {
-	G4Material *mat=G4Material::GetMaterial(material);
+    G4Material *mat=G4Material::GetMaterial(material);
 	if (!mat) std::cout<<"!!!! Material "<<material<<" not found!!!! LV "<<name<<" has no material associated to it!!!!"<<std::endl;
 	G4LogicalVolume *lv=new G4LogicalVolume(solid,mat,name);
 	theLogVolumes.push_back(lv);

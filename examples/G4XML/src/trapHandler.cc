@@ -19,8 +19,6 @@ trapHandler::trapHandler(std::string s):XMLHandler(s)
 void trapHandler::ElementHandle()
 {
 	bool res;
-    
-    
 
 	std::string name=getAttributeAsString("name",res);
 	std::string material=getAttributeAsString("material",res);
@@ -39,7 +37,7 @@ void trapHandler::ElementHandle()
 
 //	
 	Geant4Factory* factory=Geant4Factory::Factory();
-	G4VSolid* sol=factory->CreateTrap(name,pDz,pTheta,pPhi,pDy1,pDx1,pDx2,pAlph1, pDy2,pDx3,pDx4,pAlph2);
+	G4VSolid* sol=factory->CreateTrap(name,pDz,pTheta,pPhi,pDy1,pDx1,pDx2,pAlph1,pDy2,pDx3,pDx4,pAlph2);
 //
     
 	if (material.empty()) return;

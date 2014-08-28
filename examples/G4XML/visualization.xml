@@ -672,6 +672,8 @@
 <visAttributes volume="a_box" color="RoyalBlue" />
 <visAttributes volume="a_pgon" color="DarkOliveGreen" />
 <visAttributes volume="a_pcon" color="orchid" />
+<visAttributes volume="a_trap" color="orchid" forceSolid="1"/>
+
 
 </Visualization>
 

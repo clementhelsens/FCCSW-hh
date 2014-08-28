@@ -12,6 +12,7 @@
 #include "G4Tubs.hh"
 #include "G4Torus.hh"
 #include "G4Trd.hh"
+#include "G4Trap.hh"
 #include "G4Cons.hh"
 #include "G4Polycone.hh"
 #include "G4Polyhedra.hh"
@@ -162,6 +163,13 @@ G4VSolid* Geant4Factory::CreatePgon(std::string name, int nPlanes,int nPhiSides,
 	G4Polyhedra* pGon=new G4Polyhedra(name,phi0,dPhi,nPhiSides,nPlanes,z,ri,ro);
 	theSolids.push_back(pGon);
 	return pGon;
+}
+
+G4VSolid* Geant4Factory::CreateTrap(std::string name,double pDz,double pTheta,double pPhi, double pDy1,double pDx1,double pDx2,double pAlph1 ,double pDy2,double pDx3,double pDx4,double pAlph2)
+{
+	G4Trap* pTrap=new G4Trap(name,pDz,pTheta,pPhi,pDy1,pDx1,pDx2,pAlph1,pDy2,pDx3,pDx4,pAlph2);
+	theSolids.push_back(pTrap);
+	return pTrap;
 }
 
 G4LogicalVolume* Geant4Factory::CreateLogicalVolume(std::string name,std::string material,G4VSolid* solid)

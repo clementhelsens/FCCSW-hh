@@ -13,6 +13,7 @@ GeometryHandler::GeometryHandler(std::string s):XMLHandler(s)
 	AddSupportedHandler("torus");
 	AddSupportedHandler("pgon");
 	AddSupportedHandler("pcon");
+	AddSupportedHandler("trap");
 	AddSupportedHandler("World");
 	AddSupportedHandler("var");
 	AddSupportedHandler("position");

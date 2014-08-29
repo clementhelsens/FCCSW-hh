@@ -17,6 +17,10 @@ GeometryHandler::GeometryHandler(std::string s):XMLHandler(s)
 	AddSupportedHandler("World");
 	AddSupportedHandler("var");
 	AddSupportedHandler("position");
+    AddSupportedHandler("union");
+    AddSupportedHandler("intersection");
+    AddSupportedHandler("subtraction");
+
 }
 
 void GeometryHandler::ElementHandle()

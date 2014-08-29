@@ -9,40 +9,57 @@
 <box name="world_volume" material="Air" X="X_world" Y="Y_world" Z="Z_world" />
 <World volume="world_volume" />
 
-<pgon name="a_pgon" material="Carbon" nSidesPhi="8"  >
-	<zPlane Rio_Z="5.*m;15.*m;-5.*m" />
-	<zPlane Rio_Z="5.*m;7.*m;-25.*m" />
-	<zPlane Rio_Z="3.*m;10.*m;-45.*m" />
-	<zPlane Rio_Z="7.*m;25.*m;-65.*m" />
-</pgon>
-
-<position daughter="a_pgon" translate="10*m;-2*m;0" rotate="20.*deg;0.;30.*deg" />
-
-<pcon name="a_pcon" material="Carbon" >
-	<zPlane Rio_Z="5.*m;15.*m;-25.*m" />
-	<zPlane Rio_Z="5.*m;7.*m;-45.*m" />
-	<zPlane Rio_Z="3.*m;10.*m;-65.*m" />
-	<zPlane Rio_Z="7.*m;25.*m;-85.*m" />
-</pcon>
-
-<position daughter="a_pcon" translate="20*m;40*m;-10*m" rotate="20.*deg;0.;0" />
-
-<torus name="a_torus" material="Iron" rMin="2*m" rMax="5*m" rTorus="20*m" profile="0;270*deg" >
-	<position translate="0;0;20*m" rotate="30*deg;0;0" />
-</torus>
-
-<tubs name="a_tube" material="Iron" Rio_Z="0.;10*m;30*m" >
-	<position translate="0;0;20*m" rotate="30*deg;0;0" />
-</tubs>
-
-<box name="a_box" material="Air" X="2*m" Y="4*m" Z="4*m" />
-
-<position daughter="a_box" mother="a_tube" translate="3.*m;3*m;0" />
-
-<trap name="a_trap" material="Iron" pDz = "60*m" pTheta = "20*deg" pPhi = "5*deg" pDy1 = "40*m"  pDx1 = "30*m" pDx2 = "40*m" pAlph1="10*deg" pDy2 = "16*m" pDx3 = "10*m" pDx4 = "14*m" pAlph2 = "10*deg" />
-
-<position daughter="a_trap" mother="a_tube" translate="3.*m;3*m;0" />
 
 
+
+
+
+
+<box name="a_box"  X="2*m" Y="4*m" Z="4*m" />
+
+
+
+
+
+
+
+
+
+
+
+
+<intersection name="intersection_box2" material="Iron" >
+    <component volume="union_box" position="0.;0.;0." rotation="0.;0.;0.">
+        <union name="union_box" material="Iron" >
+            <component volume="a_box3" position="0.;0.;0." rotation="0.;0.;0." >
+                <box name="a_box3"  X="2*m" Y="4*m" Z="4*m" />
+            </component>
+            
+            <component volume="a_tube" position="10*m;0.;0." rotation="0.;0.;0." >
+                <tubs name="a_tube"  Rio_Z="0.;10*m;30*m" />
+            </component>
+        </union>
+    </component>
+    
+    <component volume="a_box2" position="0.;0.;0." rotation="0.;0.;0." >
+        <box name="a_box2" X="12*m" Y="4*m" Z="4*m" />
+    </component>
+    
+</intersection>
+
+<position daughter="intersection_box2" mother="world_volume" translate="0.*m;0*m;0" />
+
+
+<!-- --
+
+<intersection name="intersection_box" material="Iron" >
+    <component volume="union_box" position="0.;0.;0." rotation="0.;0.;0." />
+    <component volume="intersection_box2" position="0.;0.;0." rotation="0.;0.;0." />
+    
+</intersection>
+
+
+<position daughter="intersection_box" mother="world_volume" translate="0.*m;0*m;0" />
+<!-- -->
 </Geometry>
 

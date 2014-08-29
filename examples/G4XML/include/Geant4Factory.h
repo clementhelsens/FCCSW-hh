@@ -50,7 +50,7 @@ public:
 	
 	void 			AddMaterial(std::string,int);
 	void			AddMaterial(std::string,double);
-	
+	void            InsertVolume(G4VSolid* insert) {theSolids.push_back(insert);}
 	void 			SetAsWorld(std::string);
 	
 	G4VPhysicalVolume*	WorldPhysical() const {return WorldPhysicalVolume;}

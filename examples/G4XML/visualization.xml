@@ -668,12 +668,14 @@
 <color name="LightGreen" red="144" green="238" blue="144" />
 
 <visAttributes volume="world_volume" color="LemonChiffon" visible="1" />
-<visAttributes volume="a_tube" color="tomato" />
-<visAttributes volume="a_box" color="RoyalBlue" />
-<visAttributes volume="a_pgon" color="DarkOliveGreen" />
-<visAttributes volume="a_pcon" color="orchid" />
-<visAttributes volume="a_trap" color="orchid" visible="1"/>
+<visAttributes volume="intersection_box2" color="lightgreen" forceSolid="1" />
 
+
+<!-- --
+<visAttributes volume="union_box" color="tomato" visible="1"/>
+
+<visAttributes volume="intersection_box2" color="yellow1" visible="0"/>
+<!-- -->
 
 </Visualization>
 

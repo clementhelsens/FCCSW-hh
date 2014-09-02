@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 #include <map>
-
+#include "G4TwoVector.hh"
 class G4LogicalVolume;
 class G4VPhysicalVolume;
 class G4Material;
@@ -31,6 +31,9 @@ public:
 	G4VSolid* 		CreateTorus(std::string, double,double,double,double,double);
 	G4VSolid* 		CreateTrd(std::string, double,double,double,double,double);
 	G4VSolid* 		CreateCons(std::string,double,double,double,double,double,double,double);
+    
+    G4VSolid* 		CreateExtruded(std::string,double,std::vector<G4TwoVector>, G4TwoVector, double, G4TwoVector, double);
+
 	G4VSolid* 		CreateSphere(std::string,double,double,double,double,double,double);
 	G4VSolid* 		CreatePcon(std::string,int,double,double,double*,double*,double*);
 	G4VSolid* 		CreatePgon(std::string,int,int,double,double,double*,double*,double*);

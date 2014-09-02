@@ -76,7 +76,7 @@ void intersectionHandler::ElementHandle()
     
   
 	
-    for (unsigned long j=0; j<vol_vett.size(); j++)
+    for (unsigned long j=1; j<vol_vett.size(); j++)
     {
         
         G4IntersectionSolid* intersectionSolid = new G4IntersectionSolid(name, firstSolid, vol_vett[j]);

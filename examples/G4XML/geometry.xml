@@ -11,14 +11,27 @@
 
 <box name="a_box"  X="2*m" Y="4*m" Z="4*m" />
 
-<intersection name="intersection_box2" material="Iron" >
+
+<extruded name ="extruded_solid" material = "Iron" halfZ="4*m">
+    <vertex vector="1*m;3*m" />
+    <vertex vector="3*m;3*m" />
+    <vertex vector="4*m;5*m" />
+    <vertex vector="3*m;3.5*m" />
+    <vertex vector="2*m;7*m" />
+
+</extruded>
+
+<position daughter="extruded_solid" mother="world_volume" translate="0.*m;0*m;0" />
+
+
+<union name="intersection_box2" material="Iron" >
     <component volume="union_box" position="0.;0.;0." rotation="0.;0.;0.">
         <union name="union_box" material="Iron" >
             <component volume="a_box3" position="0.;0.;0." rotation="0.;0.;0." >
-                <box name="a_box3"  X="2*m" Y="4*m" Z="4*m" />
+                <box name="a_box3"  X="2*m" Y="40*m" Z="4*m" />
             </component>
             
-            <component volume="a_tube" position="10*m;0.;0." rotation="0.;0.;0." >
+            <component volume="a_tube" position="0.;0.;0." rotation="0.;0.;0." >
                 <tubs name="a_tube"  Rio_Z="0.;10*m;30*m" />
             </component>
         </union>
@@ -27,8 +40,7 @@
     <component volume="a_box2" position="0.;0.;0." rotation="0.;0.;0." >
         <box name="a_box2" X="12*m" Y="4*m" Z="4*m" />
     </component>
-    
-</intersection>
+</union>
 
 <position daughter="intersection_box2" mother="world_volume" translate="0.*m;0*m;0" />
 

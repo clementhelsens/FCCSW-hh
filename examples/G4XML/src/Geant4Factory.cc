@@ -17,8 +17,11 @@
 #include "G4Cons.hh"
 #include "G4Sphere.hh"
 #include "G4Polycone.hh"
+#include "G4ExtrudedSolid.hh"
+
 #include "G4Polyhedra.hh"
 #include "G4Colour.hh"
+
 
 #include <iostream>
 
@@ -153,6 +156,11 @@ G4VSolid* Geant4Factory::CreateTorus(std::string name, double Ri,double Ro,doubl
 	return aTorus;
 }
 
+
+
+
+
+
 G4VSolid* Geant4Factory::CreateTrd(std::string name, double xMin,double xMax,double yMin,double yMax, double dZ)
 {
 	G4Trd* aTrd=new G4Trd(name,xMin/2.,xMax/2.,yMin/2.,yMax/2.,dZ/2.);
@@ -171,6 +179,13 @@ G4VSolid* Geant4Factory::CreatePcon(std::string name, int nPlanes, double phi0,d
 	G4Polycone* pCon=new G4Polycone(name,phi0,dPhi,nPlanes,z,ri,ro);
 	theSolids.push_back(pCon);
 	return pCon;
+}
+
+G4VSolid* Geant4Factory::CreateExtruded(std::string name, double halfZ, std::vector<G4TwoVector> polygons, G4TwoVector off1, double scale1, G4TwoVector off2, double scale2)
+{
+	 G4ExtrudedSolid* pxEtruded=new  G4ExtrudedSolid(name,polygons, halfZ, off1, scale1, off2, scale2 );
+	theSolids.push_back(pxEtruded);
+	return pxEtruded;
 }
 
 G4VSolid* Geant4Factory::CreateSphere(std::string name, double ri,double ro,double phi0,double dPhi,double theta0, double dTheta)

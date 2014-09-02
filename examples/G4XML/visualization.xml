@@ -668,7 +668,7 @@
 <color name="LightGreen" red="144" green="238" blue="144" />
 
 <visAttributes volume="world_volume" color="LemonChiffon" visible="1" />
-<visAttributes volume="intersection_box2" color="lightgreen" forceSolid="1" />
+<visAttributes volume="intersection_box2" color="lightgreen" forceSolid="0" />
 
 
 <!-- --

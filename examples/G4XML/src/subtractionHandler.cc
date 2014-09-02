@@ -73,7 +73,7 @@ void subtractionHandler::ElementHandle()
     
   
 	
-    for (unsigned long j=0; j<vol_vett.size(); j++)
+    for (unsigned long j=1; j<vol_vett.size(); j++)
     {
     
     

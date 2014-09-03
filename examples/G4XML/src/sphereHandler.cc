@@ -3,6 +3,8 @@
 
 #include "Geant4Factory.h"
 #include "G4LogicalVolume.hh"
+#include "G4Sphere.hh"
+
 
 static sphereHandler sphere("sphere");
 
@@ -13,7 +15,7 @@ sphereHandler::sphereHandler(std::string s):XMLHandler(s)
 
 void sphereHandler::ElementHandle()
 {
-	std::string name=getAttributeAsString("name");
+	std::string name=getAttributeAsString("name", "");
 	std::string material=getAttributeAsString("material");
 	double rMin=getAttributeAsDouble("rMin",0);
 	double rMax=getAttributeAsDouble("rMax");
@@ -23,7 +25,12 @@ void sphereHandler::ElementHandle()
 	double dTheta=getAttributeAsDouble("ddTheta",180.*CLHEP::deg);
 		
 	Geant4Factory* factory=Geant4Factory::Factory();
-	if (factory->FindSolid(name)) 
+    
+    if (name.empty()) {
+        name= (factory->GetSolidVector().back()->GetName()+"1");
+    }
+    
+	if (factory->FindSolid(name))
 	{
 		std::cout<<"!!!! Warning !!!! solid "<<name<<" already in the store!!!! "<<std::endl;
 	}

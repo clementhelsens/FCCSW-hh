@@ -16,15 +16,20 @@ boxHandler::boxHandler(std::string s):XMLHandler(s)
 void boxHandler::ElementHandle()
 {
 //	bool res;
-	std::string name=getAttributeAsString("name");
+	std::string name=getAttributeAsString("name", "");
 	std::string material=getAttributeAsString("material","");
 	double xDim =getAttributeAsDouble("X");
 	double yDim =getAttributeAsDouble("Y");
 	double zDim =getAttributeAsDouble("Z");
 	//std::cout<<"handling for box "<<name<<std::endl;
+    
+    Geant4Factory* factory=Geant4Factory::Factory();
+
+    if (name.empty()) {
+        name= (factory->GetSolidVector().back()->GetName()+"1");
+    }
 	
-	Geant4Factory* factory=Geant4Factory::Factory();
-	if (factory->FindSolid(name)) 
+	if (factory->FindSolid(name))
 	{
 		std::cout<<"!!!! Warning !!!! solid "<<name<<" already in the store!!!! "<<std::endl;
 	}

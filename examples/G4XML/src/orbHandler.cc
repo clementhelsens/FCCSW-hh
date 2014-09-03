@@ -16,12 +16,17 @@ orbHandler::orbHandler(std::string s):XMLHandler(s)
 void orbHandler::ElementHandle()
 {
 //	bool res;
-	std::string name=getAttributeAsString("name");
+	std::string name=getAttributeAsString("name", "");
 	std::string material=getAttributeAsString("material","");
 	double radius =getAttributeAsDouble("radius");
 	
 	Geant4Factory* factory=Geant4Factory::Factory();
-	if (factory->FindSolid(name)) 
+    
+    if (name.empty()) {
+        name= (factory->GetSolidVector().back()->GetName()+"1");
+    }
+    
+	if (factory->FindSolid(name))
 	{
 		std::cout<<"!!!! Warning !!!! solid "<<name<<" already in the store!!!! "<<std::endl;
 	}

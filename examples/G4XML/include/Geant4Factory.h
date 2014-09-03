@@ -19,6 +19,7 @@ public:
 	~Geant4Factory() {;}
 	static Geant4Factory* 	Factory();
 	G4VSolid* 		GetSolid(std::string) const;
+    std::vector<G4VSolid*> 	GetSolidVector() const {return theSolids;}
 	G4LogicalVolume* 	GetLogicalVolume(std::string) const;
 	G4Material*	 	GetMaterial(std::string) const;
 	G4Element*		GetElement(std::string) const;
@@ -50,7 +51,8 @@ public:
 	bool			FindLogicalVolume(std::string) const;
 	bool			FindElement(std::string) const;
 	bool			FindColor(std::string) const;
-	
+    
+    void 			EraseSolid(std::string);
 	void 			AddMaterial(std::string,int);
 	void			AddMaterial(std::string,double);
 	void            InsertVolume(G4VSolid* insert) {theSolids.push_back(insert);}

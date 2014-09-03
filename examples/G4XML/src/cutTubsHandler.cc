@@ -5,6 +5,7 @@
 #include "G4VSolid.hh"
 #include "G4LogicalVolume.hh"
 #include "G4Material.hh"
+#include "G4CutTubs.hh"
 
 static cutTubsHandler cutTubs("cutTubs");
 
@@ -17,7 +18,7 @@ cutTubsHandler::cutTubsHandler(std::string s):XMLHandler(s)
 void cutTubsHandler::ElementHandle()
 {
 	bool res;
-	std::string name=getAttributeAsString("name",res);
+	std::string name=getAttributeAsString("name","");
 	std::string material=getAttributeAsString("material",res);
 	std::vector<double> vv=getAttributeAsVector("Rio_Z",res);
 
@@ -34,7 +35,12 @@ void cutTubsHandler::ElementHandle()
 	std::vector<double> highNorm_v=getAttributeAsVector("highNorm");
 	
 	Geant4Factory* factory=Geant4Factory::Factory();
-	if (factory->FindSolid(name)) 
+    
+    if (name.empty()) {
+        name= (factory->GetSolidVector().back()->GetName()+"1");
+    }
+    
+	if (factory->FindSolid(name))
 	{
 		std::cout<<"!!!! Warning !!!! solid "<<name<<" already in the store!!!! "<<std::endl;
 	}

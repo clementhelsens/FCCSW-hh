@@ -3,6 +3,7 @@
 
 #include "Geant4Factory.h"
 #include "G4LogicalVolume.hh"
+#include "G4Cons.hh"
 
 static consHandler cons("cons");
 
@@ -14,7 +15,7 @@ consHandler::consHandler(std::string s):XMLHandler(s)
 void consHandler::ElementHandle()
 {
 	bool res;
-	std::string name=getAttributeAsString("name");
+	std::string name=getAttributeAsString("name", "");
 	std::string material=getAttributeAsString("material");
 	std::vector<double> vv=getAttributeAsVector("Rio1_Rio2_Z");
 	
@@ -28,7 +29,12 @@ void consHandler::ElementHandle()
 	}
 		
 	Geant4Factory* factory=Geant4Factory::Factory();
-	if (factory->FindSolid(name)) 
+    
+    if (name.empty()) {
+        name= (factory->GetSolidVector().back()->GetName()+"1");
+    }
+    
+	if (factory->FindSolid(name))
 	{
 		std::cout<<"!!!! Warning !!!! solid "<<name<<" already in the store!!!! "<<std::endl;
 	}

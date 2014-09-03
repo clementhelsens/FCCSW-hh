@@ -23,9 +23,11 @@ componentHandler::componentHandler(std::string s):XMLHandler(s)
 void componentHandler::ElementHandle()
 {
     bool res;
-    std::string volume_ =getAttributeAsString("volume",res);
-	std::vector<double> vvv_position=getAttributeAsVector("position",res);
-	std::vector<double> vvv_rotation=getAttributeAsVector("rotation",res);
+    std::string volume_ =getAttributeAsString("volume","");
+    std::vector<double> vvv_position(3);
+	vvv_position=getAttributeAsVector("position",res);
+    std::vector<double> vvv_rotation(3);
+	 vvv_rotation=getAttributeAsVector("rotation",res);
     StopLoop(true);
 	DOMNode* child;
     
@@ -38,6 +40,18 @@ void componentHandler::ElementHandle()
         }
     
 	}
+    
+    
+    
+    
+    if (volume_.empty()){
+        Geant4Factory* factory=Geant4Factory::Factory();
+        
+        std::vector<G4VSolid*> solidvector = factory->GetSolidVector();
+        volume_ = solidvector.back()->GetName();
+        
+        
+    }
 
     pComponent.volume(volume_);
     pComponent.x_pos(vvv_position[0]);

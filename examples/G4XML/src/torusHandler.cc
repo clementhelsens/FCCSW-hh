@@ -5,6 +5,7 @@
 #include "G4VSolid.hh"
 #include "G4LogicalVolume.hh"
 #include "G4Material.hh"
+#include "G4Torus.hh"
 
 static torusHandler torus("torus");
 
@@ -17,7 +18,7 @@ torusHandler::torusHandler(std::string s):XMLHandler(s)
 void torusHandler::ElementHandle()
 {
 	bool res;
-	std::string name=getAttributeAsString("name",res);
+	std::string name=getAttributeAsString("name","");
 	std::string material=getAttributeAsString("material",res);
 	double rMin=getAttributeAsDouble("rMin");
 	double rMax=getAttributeAsDouble("rMax");
@@ -33,7 +34,12 @@ void torusHandler::ElementHandle()
 	}
 	
 	Geant4Factory* factory=Geant4Factory::Factory();
-	if (factory->FindSolid(name)) 
+    
+    if (name.empty()) {
+        name= (factory->GetSolidVector().back()->GetName()+"1");
+    }
+    
+	if (factory->FindSolid(name))
 	{
 		std::cout<<"!!!! Warning !!!! solid "<<name<<" already in the store!!!! "<<std::endl;
 	}

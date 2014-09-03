@@ -6,6 +6,7 @@
 #include "G4LogicalVolume.hh"
 #include "G4Material.hh"
 #include "pgonHandler.h"
+#include "G4Polyhedra.hh"
 
 
 static pgonHandler pgon("pgon");
@@ -19,7 +20,7 @@ void pgonHandler::ElementHandle()
 {
 //	std::cout<<"handling for pgon";
 	bool res;
-	std::string name=getAttributeAsString("name",res);
+	std::string name=getAttributeAsString("name","");
 	std::string material=getAttributeAsString("material",res);
 	int nSidesPhi=getAttributeAsInt("nSidesPhi",res);
 	
@@ -68,6 +69,11 @@ void pgonHandler::ElementHandle()
 	}
 	
 	Geant4Factory* factory=Geant4Factory::Factory();
+    
+    if (name.empty()) {
+        name= (factory->GetSolidVector().back()->GetName()+"1");
+    }
+    
 	G4VSolid* sol=factory->CreatePgon(name,nZPlanes,nSidesPhi,phi0,dPhi,rin,rou,z);
 	
 	if (material.empty()) return;

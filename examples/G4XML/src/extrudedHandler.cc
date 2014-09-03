@@ -7,6 +7,8 @@
 #include "G4VSolid.hh"
 #include "G4LogicalVolume.hh"
 #include "G4Material.hh"
+#include "G4ExtrudedSolid.hh"
+
 
 #include "G4TwoVector.hh"
 
@@ -19,15 +21,19 @@ extrudedHandler::extrudedHandler(std::string s):XMLHandler(s)
 void extrudedHandler::ElementHandle()
 {
 	bool res;
-	std::string name=getAttributeAsString("name");
+	std::string name=getAttributeAsString("name", "");
 	std::string material=getAttributeAsString("material",res);
 		
 	double halfZ=getAttributeAsDouble("halfZ",res);
     
-    std::vector<double> off1_= getAttributeAsVector("off1",res);
-	double scale1=getAttributeAsDouble("scale1",res);
-    std::vector<double> off2_= getAttributeAsVector("off1",res);
-	double scale2=getAttributeAsDouble("scale2",res);
+    std::vector<double> off1_(2);
+    off1_= getAttributeAsVector("off1",res);
+    double scale1;
+    scale1=getAttributeAsDouble("scale1",res);
+    std::vector<double> off2_(2);
+    off2_= getAttributeAsVector("off1",res);
+    double scale2;
+	scale2=getAttributeAsDouble("scale2",res);
 
 	
 	StopLoop(true);
@@ -60,14 +66,6 @@ void extrudedHandler::ElementHandle()
     
     }
     
-    if(off1_.size()<2){
-        off1_.push_back(0);
-        off1_.push_back(0);
-        off2_.push_back(0);
-        off2_.push_back(0);
-
-    }
-    
     if(scale1==0) scale1=1;
     if(scale2==0) scale2=1;
     
@@ -76,6 +74,9 @@ void extrudedHandler::ElementHandle()
 
 	Geant4Factory* factory=Geant4Factory::Factory();
     
+    if (name.empty()) {
+        name= (factory->GetSolidVector().back()->GetName()+"1");
+    }
     
 	G4VSolid* sol=factory->CreateExtruded(name,halfZ,polygons, off1, scale1, off2,  scale2);
 	

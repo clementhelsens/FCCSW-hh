@@ -11,7 +11,7 @@
 
 #include "G4Material.hh"
 
-static subtractionHandler intersection("intersection");
+static subtractionHandler subtraction("subtraction");
 
 subtractionHandler::subtractionHandler(std::string s):XMLHandler(s)
 {
@@ -19,9 +19,9 @@ subtractionHandler::subtractionHandler(std::string s):XMLHandler(s)
 
 void subtractionHandler::ElementHandle()
 {
-	bool res;
-	std::string name=getAttributeAsString("name");
-	std::string material=getAttributeAsString("material",res);
+//	bool res;
+	std::string name=getAttributeAsString("name", "");
+	std::string material=getAttributeAsString("material","");
 		StopLoop(true);
 	DOMNode* child;
 	
@@ -62,6 +62,10 @@ void subtractionHandler::ElementHandle()
     std::vector<G4VSolid*> vol_vett;
     Geant4Factory* factory=Geant4Factory::Factory();
 
+    if (name.empty()) {
+        name= (factory->GetSolidVector().back()->GetName()+"1");
+    }
+    
     for (unsigned long i = 0; i<volumes.size(); i++) {
 
         G4VSolid* vol = factory->GetSolid(volumes[i]);
@@ -88,6 +92,12 @@ void subtractionHandler::ElementHandle()
     
     
     factory->InsertVolume(firstSolid);
+    
+    for (unsigned long i = 0; i<volumes.size(); i++) {
+        factory->EraseSolid(volumes[i]);
+    }
+    
+    if (material.empty()) return;
 	factory->CreateLogicalVolume(name,material,firstSolid);
 
 }

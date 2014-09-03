@@ -7,6 +7,7 @@
 #include "G4VSolid.hh"
 #include "G4LogicalVolume.hh"
 #include "G4Material.hh"
+#include "G4Polycone.hh"
 
 static pconHandler pcon("pcon");
 
@@ -17,7 +18,7 @@ pconHandler::pconHandler(std::string s):XMLHandler(s)
 void pconHandler::ElementHandle()
 {
 	bool res;
-	std::string name=getAttributeAsString("name");
+	std::string name=getAttributeAsString("name", "");
 	std::string material=getAttributeAsString("material",res);
 		
 	double phi0=0;
@@ -65,6 +66,11 @@ void pconHandler::ElementHandle()
 	}
 	
 	Geant4Factory* factory=Geant4Factory::Factory();
+    
+    if (name.empty()) {
+        name= (factory->GetSolidVector().back()->GetName()+"1");
+    }
+    
 	G4VSolid* sol=factory->CreatePcon(name,nZPlanes,phi0,dPhi,rin,rou,z);
 	
 	if (material.empty()) return;

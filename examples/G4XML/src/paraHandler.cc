@@ -4,6 +4,7 @@
 #include "Geant4Factory.h"
 #include "G4LogicalVolume.hh"
 #include "G4Material.hh"
+#include "G4Para.hh"
 
 static paraHandler para("para");
 
@@ -15,7 +16,7 @@ paraHandler::paraHandler(std::string s):XMLHandler(s)
 void paraHandler::ElementHandle()
 {
 //	bool res;
-	std::string name=getAttributeAsString("name");
+	std::string name=getAttributeAsString("name","");
 	std::string material=getAttributeAsString("material","");
 	double xDim =getAttributeAsDouble("X");
 	double yDim =getAttributeAsDouble("Y");
@@ -26,7 +27,12 @@ void paraHandler::ElementHandle()
 	//std::cout<<"handling for para "<<name<<std::endl;
 	
 	Geant4Factory* factory=Geant4Factory::Factory();
-	if (factory->FindSolid(name)) 
+    
+    if (name.empty()) {
+        name= (factory->GetSolidVector().back()->GetName()+"1");
+    }
+    
+	if (factory->FindSolid(name))
 	{
 		std::cout<<"!!!! Warning !!!! solid "<<name<<" already in the store!!!! "<<std::endl;
 	}

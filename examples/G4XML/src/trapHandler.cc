@@ -7,6 +7,7 @@
 #include "G4LogicalVolume.hh"
 #include "G4Material.hh"
 #include "trapHandler.h"
+#include "G4Trap.hh"
 
 
 static trapHandler trap("trap");
@@ -20,7 +21,7 @@ void trapHandler::ElementHandle()
 {
 	bool res;
 
-	std::string name=getAttributeAsString("name",res);
+	std::string name=getAttributeAsString("name","");
 	std::string material=getAttributeAsString("material",res);
     double  pDz =getAttributeAsDouble("pDz",res);
     double  pTheta =getAttributeAsDouble("pTheta",res);
@@ -37,6 +38,11 @@ void trapHandler::ElementHandle()
 
 //	
 	Geant4Factory* factory=Geant4Factory::Factory();
+    
+    if (name.empty()) {
+        name= (factory->GetSolidVector().back()->GetName()+"1");
+    }
+    
 	G4VSolid* sol=factory->CreateTrap(name,pDz,pTheta,pPhi,pDy1,pDx1,pDx2,pAlph1,pDy2,pDx3,pDx4,pAlph2);
 //
     

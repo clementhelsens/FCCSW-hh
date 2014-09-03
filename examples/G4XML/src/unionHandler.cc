@@ -19,9 +19,9 @@ unionHandler::unionHandler(std::string s):XMLHandler(s)
 
 void unionHandler::ElementHandle()
 {
-	bool res;
-	std::string name=getAttributeAsString("name");
-	std::string material=getAttributeAsString("material",res);
+//	bool res;
+	std::string name=getAttributeAsString("name", "");
+	std::string material=getAttributeAsString("material","");
 		StopLoop(true);
 	DOMNode* child;
 	
@@ -61,6 +61,11 @@ void unionHandler::ElementHandle()
 
     std::vector<G4VSolid*> vol_vett;
     Geant4Factory* factory=Geant4Factory::Factory();
+    
+    
+    if (name.empty()) {
+        name= (factory->GetSolidVector().back()->GetName()+"1");
+    }
 
     for (unsigned long i = 0; i<volumes.size(); i++) {
 
@@ -85,6 +90,14 @@ void unionHandler::ElementHandle()
     }
     
     factory->InsertVolume(firstSolid);
+    
+    for (unsigned long i = 0; i<volumes.size(); i++) {
+        factory->EraseSolid(volumes[i]);
+    }
+    
+	if (material.empty()) return;
+    
 	factory->CreateLogicalVolume(name,material,firstSolid);
+    
 
 }

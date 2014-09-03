@@ -298,6 +298,17 @@ bool Geant4Factory::FindColor(std::string name) const
 	return theColors.find(name)!=theColors.end();
 }
 
+
+void Geant4Factory::EraseSolid(std::string solidtoerase)
+{
+    std::vector<G4VSolid*>::iterator iteratorvolumes;
+    for (iteratorvolumes = theSolids.begin(); iteratorvolumes != theSolids.end(); iteratorvolumes++)
+    {
+        if ((*iteratorvolumes)->GetName()==G4String(solidtoerase))
+            theSolids.erase(iteratorvolumes);
+    }
+}
+
 void Geant4Factory::AddMaterial(std::string element, int natoms)
 {
 	G4Material* mat=theMaterials.back();

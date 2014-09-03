@@ -3,6 +3,14 @@ import commands
 import time
 import random
 
+# python script/runbatch.py -n 20 -e 100 -u 'GeV' -p 'pi+' -f 50 -t 1 -m batch 
+# python script/runbatch.py -n 20 -e 500 -u 'GeV' -p 'pi+' -f 50 -t 1 -m batch 
+# python script/runbatch.py -n 50 -e 1 -u 'TeV' -p 'pi+' -f 20 -t 1 -m batch -s 1000
+# python script/runbatch.py -n 100 -e 10 -u 'TeV' -p 'pi+' -f 10 -t 1 -m batch -s 1000
+# python script/runbatch.py -n 50 -e 10 -u 'TeV' -p 'e-' -f 20 -t 1 -m batch 
+# python script/runbatch.py -n 20 -e 500 -u 'GeV' -p 'e-' -f 50 -t 1 -m batch 
+
+
 
 #__________________________________________________________
 def getCommandOutput(command):
@@ -69,6 +77,9 @@ if __name__=="__main__":
                        dest='mode',
                        default='batch')
 
+    parser.add_option ('-s', '--seed',  help='Starting seed',
+                       dest='seed',
+                       default='0')
 
     (options, args) = parser.parse_args()
     njobs    = int(options.njobs)
@@ -78,7 +89,8 @@ if __name__=="__main__":
     events   = int(options.events)
     threads  = int(options.threads)
     mode     = options.mode
- 
+    seed     = int(options.seed)
+
     rundir = os.getcwd()
     nbjobsSub=0
     for i in xrange(njobs):
@@ -87,7 +99,7 @@ if __name__=="__main__":
         fmac.write('/gun/energy %f %s\n'%(energy,unit))
         fmac.write('/gun/particle %s\n'%(particle))
         fmac.write('/analysis/setFileName FCC_job%i_%s_%i%s\n'%(i,particle.replace('+','plus').replace('-','minus'),int(energy),unit))
-        fmac.write('/random/setSeeds %i %i\n'%(i+1, i+2))
+        fmac.write('/random/setSeeds %i %i\n'%(i+1+seed, i+2+seed))
         fmac.write('/run/beamOn %i\n'%(events))
         fmac.write('exit\n')
 

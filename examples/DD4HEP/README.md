@@ -37,7 +37,7 @@ At this stage one can run geoDisplay to visualize the geometry being used. Alway
 
 Or alternatively run the GUI
 
-    python ../script/gui.py
+    python ../scripts/gui.py
 
 Do not forget to quit the ROOT window (.q) before running an other display
 
@@ -46,11 +46,11 @@ Do not forget to quit the ROOT window (.q) before running an other display
 
 at this point one can run FCChh_sim in batch mode:
 
-    FCChh_sim file:../compact/FCCDectOpt02.xml file:../Hcal_Barrel.xml file:../compact/geant4.xml ../scripts/FCChh.in
+    FCChh_sim file:../compact/FCCDectOpt02.xml file:../compact/HCal_Barrel.xml file:../compact/Pixel_Barrel.xml  file:../compact/Muon_Barrel.xml file:../compact/geant4.xml ../scripts/FCChh.in
 
 or in (Geant4-like) interactive mode:
 
-    FCChh_sim -i file:../compact/FCCDectOpt02.xml file:../Hcal_Barrel.xml file:../compact/geant4.xml ../scripts/FCChh.in
+    FCChh_sim -i file:../compact/FCCDectOpt02.xml file:../compact/HCal_Barrel.xml file:../compact/Pixel_Barrel.xml  file:../compact/Muon_Barrel.xml file:../compact/geant4.xml
 
 ### Simulation with DD4hep
 

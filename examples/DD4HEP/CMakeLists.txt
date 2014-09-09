@@ -77,9 +77,9 @@ target_link_libraries(${PackageName} ${DD4hep_LIBRARIES}
 #  ${LCIO_LIBRARIES}
   )
 
-add_executable( FCC_example FCC_example.cc )
+add_executable( FCChh_sim FCChh_sim.cc )
 
-target_link_libraries(FCC_example ${PackageName}  )
+target_link_libraries(FCChh_sim ${PackageName}  )
 
 
 #---Testing-------------------------------------------------------------------------
@@ -135,7 +135,7 @@ endforeach()
 
 #--- install target-------------------------------------
 
-install(TARGETS ${PackageName} FCC_example
+install(TARGETS ${PackageName} FCChh_sim
   RUNTIME DESTINATION bin
   LIBRARY DESTINATION lib
   )
@@ -153,7 +153,7 @@ install(TARGETS ${PackageName} FCC_example
 
 SET( test_name "test_FCChh" )
 ADD_TEST( t_${test_name} "${CMAKE_INSTALL_PREFIX}/bin/run_test_${PackageName}.sh" 
-  FCC_example file:${CMAKE_CURRENT_SOURCE_DIR}/compact/N04.xml file:${CMAKE_CURRENT_SOURCE_DIR}/compact/geant4.xml ${CMAKE_CURRENT_SOURCE_DIR}/exampleN04.in )
+  FCChh_sim file:${CMAKE_CURRENT_SOURCE_DIR}/compact/N04.xml file:${CMAKE_CURRENT_SOURCE_DIR}/compact/geant4.xml ${CMAKE_CURRENT_SOURCE_DIR}/exampleN04.in )
 
 #----- check for typical expected output:
 SET_TESTS_PROPERTIES( t_${test_name} PROPERTIES PASS_REGULAR_EXPRESSION  " Number of events processed : 3" )
